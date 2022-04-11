@@ -1,0 +1,42 @@
+﻿@model ProjectPrototype.Models.Team
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Team</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TeamName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TeamName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Mascot)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Mascot)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Wins)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wins)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Losses)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Losses)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TeamId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
