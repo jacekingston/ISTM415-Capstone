@@ -8,7 +8,7 @@ namespace ProjectPrototype.Models
 {
     public class MatchContext : DbContext
     {
-        public MatchContext(DbContextOptions<MatchContext> options) : base(options) { }
+        public MatchContext(DbContextOptions<MatchContext> options) : base(options) { Database.Migrate(); }
         public DbSet<Match> Matches { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

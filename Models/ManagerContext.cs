@@ -8,7 +8,7 @@ namespace ProjectPrototype.Models
 {
     public class ManagerContext : DbContext
     {
-        public ManagerContext(DbContextOptions<ManagerContext> options) : base(options) { }
+        public ManagerContext(DbContextOptions<ManagerContext> options) : base(options) { Database.Migrate(); }
         public DbSet<Manager> Managers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
