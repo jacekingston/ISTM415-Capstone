@@ -53,7 +53,7 @@ namespace ProjectPrototype.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GameId,DateTime,WinnerScore,LoserScore,Location,WinnerTeamId,LoserTeamId")] Game game)
+        public async Task<IActionResult> Create([Bind("GameId,DateTime,Location")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ProjectPrototype.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GameId,DateTime,WinnerScore,LoserScore,Location,WinnerTeamId,LoserTeamId")] Game game)
+        public async Task<IActionResult> Edit(int id, [Bind("GameId,DateTime,Location")] Game game)
         {
             if (id != game.GameId)
             {
@@ -147,6 +147,19 @@ namespace ProjectPrototype.Controllers
         private bool GameExists(int id)
         {
             return _context.Games.Any(e => e.GameId == id);
+        }
+
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            return View();
+            // Linq query (Magic)
+            var games = from g in _context.Games select g;
+
+            // If we have search results, run the query against database
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                //games = games.Where(g => g.)
+            }
         }
     }
 }

@@ -13,8 +13,8 @@ namespace ProjectPrototype.Migrations.Match
                     MatchId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GameId = table.Column<int>(nullable: false),
-                    HomeTeamId = table.Column<int>(nullable: false),
-                    AwayTeamId = table.Column<int>(nullable: false)
+                    TeamId = table.Column<int>(nullable: false),
+                    Score = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -23,8 +23,13 @@ namespace ProjectPrototype.Migrations.Match
 
             migrationBuilder.InsertData(
                 table: "Matches",
-                columns: new[] { "MatchId", "AwayTeamId", "GameId", "HomeTeamId" },
-                values: new object[] { 1, 1, 1, 1 });
+                columns: new[] { "MatchId", "GameId", "Score", "TeamId" },
+                values: new object[] { 1, 1, 2, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Matches",
+                columns: new[] { "MatchId", "GameId", "Score", "TeamId" },
+                values: new object[] { 2, 1, 12, 2 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

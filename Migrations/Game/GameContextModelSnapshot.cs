@@ -15,7 +15,7 @@ namespace ProjectPrototype.Migrations.Game
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.22")
+                .HasAnnotation("ProductVersion", "3.1.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -33,18 +33,6 @@ namespace ProjectPrototype.Migrations.Game
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LoserScore")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LoserTeamId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WinnerScore")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WinnerTeamId")
-                        .HasColumnType("int");
-
                     b.HasKey("GameId");
 
                     b.ToTable("Games");
@@ -54,11 +42,7 @@ namespace ProjectPrototype.Migrations.Game
                         {
                             GameId = 1,
                             DateTime = new DateTime(2022, 4, 10, 2, 30, 0, 0, DateTimeKind.Unspecified),
-                            Location = "College Station, TX",
-                            LoserScore = 1,
-                            LoserTeamId = 2,
-                            WinnerScore = 4,
-                            WinnerTeamId = 1
+                            Location = "College Station, TX"
                         });
                 });
 #pragma warning restore 612, 618

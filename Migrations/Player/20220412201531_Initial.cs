@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ProjectPrototype.Migrations.Player
+namespace ProjectPrototype.Migrations
 {
     public partial class Initial : Migration
     {

@@ -16,10 +16,10 @@
                 @Html.DisplayNameFor(model => model.GameId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HomeTeamId)
+                @Html.DisplayNameFor(model => model.TeamId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AwayTeamId)
+                @Html.DisplayNameFor(model => model.Score)
             </th>
             <th></th>
         </tr>
@@ -31,10 +31,10 @@
                 @Html.DisplayFor(modelItem => item.GameId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HomeTeamId)
+                @Html.DisplayFor(modelItem => item.TeamId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AwayTeamId)
+                @Html.DisplayFor(modelItem => item.Score)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MatchId">Edit</a> |

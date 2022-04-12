@@ -17,11 +17,7 @@ namespace ProjectPrototype.Models
                 {
                     GameId = 1,
                     DateTime = new DateTime(2022, 4, 10, 2, 30, 0),
-                    WinnerScore = 4,
-                    LoserScore = 1,
-                    Location = "College Station, TX",
-                    WinnerTeamId = 1,
-                    LoserTeamId = 2
+                    Location = "College Station, TX"
                 }
             );
         }

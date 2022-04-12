@@ -53,7 +53,7 @@ namespace ProjectPrototype.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MatchId,GameId,HomeTeamId,AwayTeamId")] Match match)
+        public async Task<IActionResult> Create([Bind("MatchId,GameId,TeamId,Score")] Match match)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ProjectPrototype.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MatchId,GameId,HomeTeamId,AwayTeamId")] Match match)
+        public async Task<IActionResult> Edit(int id, [Bind("MatchId,GameId,TeamId,Score")] Match match)
         {
             if (id != match.MatchId)
             {

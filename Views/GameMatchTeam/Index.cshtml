@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProjectPrototype.ViewModels.GameMatchTeam>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form asp-action="Index">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<form action="Controllers/GamesController" method="post">
+    <div>
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Winning team
+                    </th>
+                    <th>
+                        Score
+                    </th>
+                    <th>
+                        Losing team
+                    </th>
+                    <th>
+                        Score
+                    </th>
+                    <th>
+                        Date/Time
+                    </th>
+                    <th>
+                        Location
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TeamLink.TeamName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MatchLink.Score)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GameLink.DateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GameLink.Location)
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>

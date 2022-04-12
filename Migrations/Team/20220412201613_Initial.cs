@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ProjectPrototype.Migrations
+namespace ProjectPrototype.Migrations.Team
 {
     public partial class Initial : Migration
     {

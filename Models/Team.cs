@@ -17,5 +17,9 @@ namespace ProjectPrototype.Models
         public string Mascot { get; set; }
         public int Wins { get; set; }
         public int Losses { get; set; }
+
+        public IEnumerable<Player> Players { get; set; }
+
+        public IEnumerable<Manager> Managers { get; set; }
     }
 }

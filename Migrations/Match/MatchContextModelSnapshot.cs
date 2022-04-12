@@ -14,7 +14,7 @@ namespace ProjectPrototype.Migrations.Match
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.22")
+                .HasAnnotation("ProductVersion", "3.1.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -25,13 +25,13 @@ namespace ProjectPrototype.Migrations.Match
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AwayTeamId")
-                        .HasColumnType("int");
-
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HomeTeamId")
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeamId")
                         .HasColumnType("int");
 
                     b.HasKey("MatchId");
@@ -42,9 +42,16 @@ namespace ProjectPrototype.Migrations.Match
                         new
                         {
                             MatchId = 1,
-                            AwayTeamId = 1,
                             GameId = 1,
-                            HomeTeamId = 1
+                            Score = 2,
+                            TeamId = 1
+                        },
+                        new
+                        {
+                            MatchId = 2,
+                            GameId = 1,
+                            Score = 12,
+                            TeamId = 2
                         });
                 });
 #pragma warning restore 612, 618

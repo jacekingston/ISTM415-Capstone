@@ -6,67 +6,61 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectPrototype.Models;
 
-namespace ProjectPrototype.Migrations.Manager
+namespace ProjectPrototype.Migrations.Team
 {
-    [DbContext(typeof(ManagerContext))]
-    [Migration("20220410212615_Initial")]
+    [DbContext(typeof(TeamContext))]
+    [Migration("20220412201613_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.22")
+                .HasAnnotation("ProductVersion", "3.1.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ProjectPrototype.Models.Manager", b =>
+            modelBuilder.Entity("ProjectPrototype.Models.Team", b =>
                 {
-                    b.Property<int>("ManagerId")
+                    b.Property<int>("TeamId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("Phone")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("TeamId")
+                    b.Property<int>("Losses")
                         .HasColumnType("int");
 
-                    b.HasKey("ManagerId");
+                    b.Property<string>("Mascot")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Managers");
+                    b.Property<string>("TeamName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Wins")
+                        .HasColumnType("int");
+
+                    b.HasKey("TeamId");
+
+                    b.ToTable("Teams");
 
                     b.HasData(
                         new
                         {
-                            ManagerId = 1,
-                            Email = "mstevens@verizon.net",
-                            FirstName = "Mike",
-                            LastName = "Stevens",
-                            Phone = 9723389204L,
-                            TeamId = 1
+                            TeamId = 1,
+                            Losses = 0,
+                            Mascot = "Horse",
+                            TeamName = "Roughriders",
+                            Wins = 0
                         },
                         new
                         {
-                            ManagerId = 2,
-                            Email = "freemansports@gmail.com",
-                            FirstName = "John",
-                            LastName = "Freeman",
-                            Phone = 9725478392L,
-                            TeamId = 2
+                            TeamId = 2,
+                            Losses = 0,
+                            Mascot = "Hammerhead",
+                            TeamName = "Sharks",
+                            Wins = 0
                         });
                 });
 #pragma warning restore 612, 618

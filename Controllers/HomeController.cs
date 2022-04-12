@@ -22,5 +22,31 @@ namespace ProjectPrototype.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult OpenPage(string page)
+        {
+            switch (page)
+            {
+                case "Teams":
+                    {
+                        return View(new Team());
+                    }
+                case "Players":
+                    {
+                        return View(new Player());
+                    }
+                case "Games":
+                    {
+                        return View(new Game());
+                    }
+                case "Managers":
+                    {
+                        return View(new Manager());
+                    }
+
+            }
+            return View();
+        }
     }
 }

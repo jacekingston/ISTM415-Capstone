@@ -8,7 +8,11 @@ namespace ProjectPrototype.Models
 {
     public class MatchContext : DbContext
     {
-        public MatchContext(DbContextOptions<MatchContext> options) : base(options) { Database.Migrate(); }
+        public MatchContext(DbContextOptions<MatchContext> options) : base(options) {
+            Database.EnsureCreated();
+            Database.Migrate(); }
+
+        public MatchContext() { }
         public DbSet<Match> Matches { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -17,8 +21,15 @@ namespace ProjectPrototype.Models
                 {
                     MatchId = 1,
                     GameId = 1,
-                    HomeTeamId = 1,
-                    AwayTeamId = 2
+                    TeamId = 1,
+                    Score = 2
+                },
+                new Match
+                {
+                    MatchId = 2,
+                    GameId = 1,
+                    TeamId = 2,
+                    Score = 12
                 }
             );
         }
