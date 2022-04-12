@@ -8,7 +8,7 @@ namespace ProjectPrototype.Models
 {
     public class TeamContext : DbContext
     {
-        public TeamContext(DbContextOptions<TeamContext> options) : base(options) { }
+        public TeamContext(DbContextOptions<TeamContext> options) : base(options) { Database.Migrate(); }
         public DbSet<Team> Teams { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
