@@ -11,9 +11,9 @@ namespace ProjectPrototype.Controllers
 {
     public class TeamsController : Controller
     {
-        private readonly TeamContext _context;
+        private readonly RosterContext _context;
 
-        public TeamsController(TeamContext context)
+        public TeamsController(RosterContext context)
         {
             _context = context;
         }
@@ -49,10 +49,7 @@ namespace ProjectPrototype.Controllers
         }
 
         // POST: Teams/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TeamId,TeamName,Mascot,Wins,Losses")] Team team)
         {
             if (ModelState.IsValid)
@@ -81,10 +78,7 @@ namespace ProjectPrototype.Controllers
         }
 
         // POST: Teams/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("TeamId,TeamName,Mascot,Wins,Losses")] Team team)
         {
             if (id != team.TeamId)
@@ -135,7 +129,6 @@ namespace ProjectPrototype.Controllers
 
         // POST: Teams/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var team = await _context.Teams.FindAsync(id);

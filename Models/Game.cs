@@ -14,5 +14,7 @@ namespace ProjectPrototype.Models
         public DateTime DateTime { get; set; }
         [Required(ErrorMessage = "Please enter a location.")]
         public string Location { get; set; }
+
+        public IEnumerable<Match> Matches { get; set; }
     }
 }

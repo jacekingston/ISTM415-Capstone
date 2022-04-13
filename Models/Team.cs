@@ -18,6 +18,8 @@ namespace ProjectPrototype.Models
         public int Wins { get; set; }
         public int Losses { get; set; }
 
+        public IEnumerable<Match> Matches { get; set; }
+
         public IEnumerable<Player> Players { get; set; }
 
         public IEnumerable<Manager> Managers { get; set; }
