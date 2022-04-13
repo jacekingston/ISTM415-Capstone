@@ -50,7 +50,7 @@ namespace ProjectPrototype.Controllers
 
         // POST: Teams/Create
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("TeamId,TeamName,Mascot,Wins,Losses")] Team team)
+        public async Task<IActionResult> Create(Team team)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace ProjectPrototype.Controllers
 
         // POST: Teams/Edit/5
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("TeamId,TeamName,Mascot,Wins,Losses")] Team team)
+        public async Task<IActionResult> Edit(int id, Team team)
         {
             if (id != team.TeamId)
             {

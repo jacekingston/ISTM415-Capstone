@@ -47,13 +47,13 @@ namespace ProjectPrototype.Controllers
         // GET: Managers/Create
         public IActionResult Create()
         {
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot");
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName");
             return View();
         }
 
         // POST: Managers/Create
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("ManagerId,FirstName,LastName,Phone,Email,TeamId")] Manager manager)
+        public async Task<IActionResult> Create(Manager manager)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace ProjectPrototype.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot", manager.TeamId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", manager.TeamId);
             return View(manager);
         }
 
@@ -78,13 +78,13 @@ namespace ProjectPrototype.Controllers
             {
                 return NotFound();
             }
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot", manager.TeamId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", manager.TeamId);
             return View(manager);
         }
 
         // POST: Managers/Edit/5
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ManagerId,FirstName,LastName,Phone,Email,TeamId")] Manager manager)
+        public async Task<IActionResult> Edit(int id, Manager manager)
         {
             if (id != manager.ManagerId)
             {
@@ -111,7 +111,7 @@ namespace ProjectPrototype.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot", manager.TeamId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", manager.TeamId);
             return View(manager);
         }
 

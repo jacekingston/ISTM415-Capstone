@@ -50,7 +50,7 @@ namespace ProjectPrototype.Controllers
 
         // POST: Games/Create
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("GameId,DateTime,Location")] Game game)
+        public async Task<IActionResult> Create(Game game)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace ProjectPrototype.Controllers
 
         // POST: Games/Edit/5
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("GameId,DateTime,Location")] Game game)
+        public async Task<IActionResult> Edit(int id, Game game)
         {
             if (id != game.GameId)
             {

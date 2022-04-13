@@ -48,14 +48,14 @@ namespace ProjectPrototype.Controllers
         // GET: Matches/Create
         public IActionResult Create()
         {
-            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "Location");
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot");
+            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "DateTime");
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName");
             return View();
         }
 
         // POST: Matches/Create
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("MatchId,GameId,TeamId,Score,Outcome")] Match match)
+        public async Task<IActionResult> Create( Match match)
         {
             if (ModelState.IsValid)
             {
@@ -63,8 +63,8 @@ namespace ProjectPrototype.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "Location", match.GameId);
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot", match.TeamId);
+            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "DateTime", match.GameId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", match.TeamId);
             return View(match);
         }
 
@@ -81,14 +81,14 @@ namespace ProjectPrototype.Controllers
             {
                 return NotFound();
             }
-            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "Location", match.GameId);
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot", match.TeamId);
+            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "DateTime", match.GameId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", match.TeamId);
             return View(match);
         }
 
         // POST: Matches/Edit/5
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("MatchId,GameId,TeamId,Score,Outcome")] Match match)
+        public async Task<IActionResult> Edit(int id, Match match)
         {
             if (id != match.MatchId)
             {
@@ -115,8 +115,8 @@ namespace ProjectPrototype.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "Location", match.GameId);
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot", match.TeamId);
+            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "DateTime", match.GameId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", match.TeamId);
             return View(match);
         }
 

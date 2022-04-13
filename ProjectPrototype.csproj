@@ -21,4 +21,8 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\images\LittleLeague1.jpg" />
+  </ItemGroup>
+
 </Project>

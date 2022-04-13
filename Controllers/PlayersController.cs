@@ -47,13 +47,13 @@ namespace ProjectPrototype.Controllers
         // GET: Players/Create
         public IActionResult Create()
         {
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot");
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName");
             return View();
         }
 
         // POST: Players/Create
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("PlayerId,TeamId,FirstName,LastName,DOB,Height,Weight,NumAtBats,NumHits,NumHittingStrikeouts,NumHomeruns,NumRBI,NumWalks,Position,NumPlays,NumErrors,NumInningsPitched,NumEarnedRunsAllowed,NumWalksAllowed,NumPitchingStrikeouts,NumHomerunsAllowed")] Player player)
+        public async Task<IActionResult> Create(Player player)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace ProjectPrototype.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot", player.TeamId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 
@@ -78,13 +78,13 @@ namespace ProjectPrototype.Controllers
             {
                 return NotFound();
             }
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot", player.TeamId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 
         // POST: Players/Edit/5
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("PlayerId,TeamId,FirstName,LastName,DOB,Height,Weight,NumAtBats,NumHits,NumHittingStrikeouts,NumHomeruns,NumRBI,NumWalks,Position,NumPlays,NumErrors,NumInningsPitched,NumEarnedRunsAllowed,NumWalksAllowed,NumPitchingStrikeouts,NumHomerunsAllowed")] Player player)
+        public async Task<IActionResult> Edit(int id, Player player)
         {
             if (id != player.PlayerId)
             {
@@ -111,7 +111,7 @@ namespace ProjectPrototype.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "Mascot", player.TeamId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 
