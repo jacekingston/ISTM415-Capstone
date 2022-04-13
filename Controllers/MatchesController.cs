@@ -11,9 +11,9 @@ namespace ProjectPrototype.Controllers
 {
     public class MatchesController : Controller
     {
-        private readonly MatchContext _context;
+        private readonly RosterContext _context;
 
-        public MatchesController(MatchContext context)
+        public MatchesController(RosterContext context)
         {
             _context = context;
         }
@@ -21,7 +21,8 @@ namespace ProjectPrototype.Controllers
         // GET: Matches
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Matches.ToListAsync());
+            var rosterContext = _context.Matches.Include(m => m.Game).Include(m => m.Team);
+            return View(await rosterContext.ToListAsync());
         }
 
         // GET: Matches/Details/5
@@ -33,6 +34,8 @@ namespace ProjectPrototype.Controllers
             }
 
             var match = await _context.Matches
+                .Include(m => m.Game)
+                .Include(m => m.Team)
                 .FirstOrDefaultAsync(m => m.MatchId == id);
             if (match == null)
             {
@@ -45,15 +48,14 @@ namespace ProjectPrototype.Controllers
         // GET: Matches/Create
         public IActionResult Create()
         {
+            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "DateTime");
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName");
             return View();
         }
 
         // POST: Matches/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MatchId,GameId,TeamId,Score")] Match match)
+        public async Task<IActionResult> Create( Match match)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +63,8 @@ namespace ProjectPrototype.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "DateTime", match.GameId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", match.TeamId);
             return View(match);
         }
 
@@ -77,15 +81,14 @@ namespace ProjectPrototype.Controllers
             {
                 return NotFound();
             }
+            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "DateTime", match.GameId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", match.TeamId);
             return View(match);
         }
 
         // POST: Matches/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MatchId,GameId,TeamId,Score")] Match match)
+        public async Task<IActionResult> Edit(int id, Match match)
         {
             if (id != match.MatchId)
             {
@@ -112,6 +115,8 @@ namespace ProjectPrototype.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["GameId"] = new SelectList(_context.Games, "GameId", "DateTime", match.GameId);
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", match.TeamId);
             return View(match);
         }
 
@@ -124,6 +129,8 @@ namespace ProjectPrototype.Controllers
             }
 
             var match = await _context.Matches
+                .Include(m => m.Game)
+                .Include(m => m.Team)
                 .FirstOrDefaultAsync(m => m.MatchId == id);
             if (match == null)
             {
@@ -135,7 +142,6 @@ namespace ProjectPrototype.Controllers
 
         // POST: Matches/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var match = await _context.Matches.FindAsync(id);

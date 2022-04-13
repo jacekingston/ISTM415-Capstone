@@ -13,7 +13,16 @@ namespace ProjectPrototype.Models
         public int TeamId { get; set; }
         public int Score { get; set; }
 
-        public IEnumerable<Game> Games { get; set; }
-        public IEnumerable<Team> teams { get; set; }
+        public Outcome Outcome { get; set; }
+
+        public Game Game { get; set; }
+        public Team Team { get; set; }
+    }
+
+    public enum Outcome
+    {
+        Win,
+        Loss,
+        Tie
     }
 }

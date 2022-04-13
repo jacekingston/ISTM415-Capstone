@@ -49,5 +49,7 @@ namespace ProjectPrototype.Models
         public int NumPitchingStrikeouts { get; set; }
         public int NumHomerunsAllowed { get; set; }
 
+        public Team Team { get; set; }
+
     }
 }
