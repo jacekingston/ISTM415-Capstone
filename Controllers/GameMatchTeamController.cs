@@ -7,6 +7,7 @@ using ProjectPrototype.Controllers;
 using ProjectPrototype.ViewModels;
 using ProjectPrototype.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ProjectPrototype.Controllers
 {
@@ -40,44 +41,20 @@ namespace ProjectPrototype.Controllers
                     groups.Add(match.GameId, new List<Match>());
                 groups[match.GameId].Add(match);
 
-                
             }
 
-            List<GameMatchTeam> test = new List<GameMatchTeam>();
+            List<GameMatchTeam> fullGames = new List<GameMatchTeam>();
             // Iterate over match groupings
             foreach (var groupings in groups)
             {
             // Check if grouping has 2 matches (it should always)
                 Match a = groupings.Value.ElementAt(0);
                 Match b = groupings.Value.ElementAt(1);
-                if(a.Score > b.Score)
-                {
-                    test.Add(new GameMatchTeam
-                    {
-                        MatchLinkW = a,
-                        MatchLinkL = b
-                    });
-                    // A is winner
-                }else if(a.Score < b.Score)
-                {
-                    // B is Winner
-                    test.Add(new GameMatchTeam
-                    {
-                        MatchLinkW = b,
-                        MatchLinkL = a
-                    });
-                }
-                else if(a.Score == b.Score)
-                {
-                    // Tie!
-                    test.Add(new GameMatchTeam
-                    {
-                        MatchLinkW = a,
-                        MatchLinkL = b
-                    });
-                }
+                var fullGame = DetermineGameWinner(a, b);
+                if (fullGame != null)
+                    fullGames.Add(fullGame);
             }
-            return View(test);
+            return View(fullGames);
         }
 
         [HttpPost]
@@ -94,7 +71,7 @@ namespace ProjectPrototype.Controllers
                 match.Game = _context.Games.Find(match.GameId);
                 match.Team = _context.Teams.Find(match.TeamId);
 
-                if (!match.Team.TeamName.Contains(SearchString))
+                if (!Util.UseSearchTerm(SearchString, match.Team.TeamName))
                     continue;
 
                 if (!groups.ContainsKey(match.GameId))
@@ -109,7 +86,7 @@ namespace ProjectPrototype.Controllers
             // Second pass to add non search pair
             foreach(var match in _context.Matches)
             {
-                if(groups.ContainsKey(match.GameId) && groups[match.GameId].Count < 2)
+                if(groups.ContainsKey(match.GameId) && groups[match.GameId].Count < 2 && groups[match.GameId].ElementAt(0).TeamId != match.TeamId)
                 {
                     // group made, and only 1 element
                     // Add other
@@ -117,42 +94,96 @@ namespace ProjectPrototype.Controllers
                 }
             }
 
-            List<GameMatchTeam> test = new List<GameMatchTeam>();
+            List<GameMatchTeam> fullGames = new List<GameMatchTeam>();
             // Iterate over match groupings
             foreach (var groupings in groups)
             {
                 // Check if grouping has 2 matches (it should always)
                 Match a = groupings.Value.ElementAt(0);
                 Match b = groupings.Value.ElementAt(1);
-                if (a.Score > b.Score)
-                {
-                    test.Add(new GameMatchTeam
-                    {
-                        MatchLinkW = a,
-                        MatchLinkL = b
-                    });
-                    // A is winner
-                }
-                else if (a.Score < b.Score)
-                {
-                    // B is Winner
-                    test.Add(new GameMatchTeam
-                    {
-                        MatchLinkW = b,
-                        MatchLinkL = a
-                    });
-                }
-                else if (a.Score == b.Score)
-                {
-                    // Tie!
-                    test.Add(new GameMatchTeam
-                    {
-                        MatchLinkW = a,
-                        MatchLinkL = b
-                    });
-                }
+                var fullGame = DetermineGameWinner(a, b);
+                if (fullGame != null)
+                    fullGames.Add(fullGame);
             }
-            return View(test);
+            return View(fullGames);
+        }
+
+        private GameMatchTeam DetermineGameWinner(Match a, Match b)
+        {
+            if (a.Score > b.Score)
+            {
+                return new GameMatchTeam
+                {
+                    MatchLinkW = a,
+                    MatchLinkL = b
+                };
+                // A is winner
+            }
+            else if (a.Score < b.Score)
+            {
+                // B is Winner
+                return new GameMatchTeam
+                {
+                    MatchLinkW = b,
+                    MatchLinkL = a
+                };
+            }
+            else if (a.Score == b.Score)
+            {
+                // Tie!
+                return new GameMatchTeam
+                {
+                    MatchLinkW = a,
+                    MatchLinkL = b
+                };
+            }
+            return null;
+        }
+
+        // GET: Players/Create
+        public IActionResult Create()
+        {
+            ViewData["TeamIdA"] = new SelectList(_context.Teams, "TeamId", "TeamName");
+            ViewData["TeamIdB"] = new SelectList(_context.Teams, "TeamId", "TeamName");
+            return View();
+        }
+
+        // POST: Players/Create
+        [HttpPost]
+        public async Task<IActionResult> Create(GameMatchTeam fullGame)
+        {
+            if (ModelState.IsValid)
+            {
+                Match a = fullGame.MatchLinkW;
+                Match b = fullGame.MatchLinkL;
+                // Add Game
+                var trackGame = _context.Add(new Game
+                {
+                    DateTime = a.Game.DateTime,
+                    Location = a.Game.Location
+                });
+                // Save so auto ID is generated
+                await _context.SaveChangesAsync();
+
+                // Add Matches
+                _context.Add(new Match
+                {
+                    GameId = trackGame.Entity.GameId,
+                    TeamId = a.TeamId,
+                    Score = a.Score
+                });
+                _context.Add(new Match
+                {
+                    GameId = trackGame.Entity.GameId,
+                    TeamId = b.TeamId,
+                    Score = b.Score
+                });
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["TeamIdA"] = new SelectList(_context.Teams, "TeamId", "TeamName", fullGame.MatchLinkW.TeamId);
+            ViewData["TeamIdB"] = new SelectList(_context.Teams, "TeamId", "TeamName", fullGame.MatchLinkL.TeamId);
+            return View(fullGame);
         }
 
     }
