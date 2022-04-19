@@ -31,21 +31,9 @@ namespace ProjectPrototype
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<TeamContext>(options =>
+            services.AddDbContext<RosterContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("TeamContext")));
-            services.AddDbContext<ManagerContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("ManagerContext")));
-            services.AddDbContext<PlayerContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("PlayerContext")));
-            services.AddDbContext<GameContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("GameContext")));
-            services.AddDbContext<MatchContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("MatchContext")));
+                    Configuration.GetConnectionString("RosterContext")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();

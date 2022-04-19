@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Managers View</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -16,19 +16,7 @@
                 @Html.DisplayNameFor(model => model.DateTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WinnerScore)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LoserScore)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WinnerTeamId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LoserTeamId)
             </th>
             <th></th>
         </tr>
@@ -40,19 +28,7 @@
                 @Html.DisplayFor(modelItem => item.DateTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WinnerScore)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LoserScore)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WinnerTeamId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LoserTeamId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.GameId">Edit</a> |

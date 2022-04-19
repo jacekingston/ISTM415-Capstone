@@ -11,9 +11,9 @@ namespace ProjectPrototype.Controllers
 {
     public class ManagersController : Controller
     {
-        private readonly ManagerContext _context;
+        private readonly RosterContext _context;
 
-        public ManagersController(ManagerContext context)
+        public ManagersController(RosterContext context)
         {
             _context = context;
         }
@@ -21,7 +21,8 @@ namespace ProjectPrototype.Controllers
         // GET: Managers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Managers.ToListAsync());
+            var rosterContext = _context.Managers.Include(m => m.Team);
+            return View(await rosterContext.ToListAsync());
         }
 
         // GET: Managers/Details/5
@@ -33,6 +34,7 @@ namespace ProjectPrototype.Controllers
             }
 
             var manager = await _context.Managers
+                .Include(m => m.Team)
                 .FirstOrDefaultAsync(m => m.ManagerId == id);
             if (manager == null)
             {
@@ -45,15 +47,13 @@ namespace ProjectPrototype.Controllers
         // GET: Managers/Create
         public IActionResult Create()
         {
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName");
             return View();
         }
 
         // POST: Managers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ManagerId,FirstName,LastName,Phone,Email,TeamId")] Manager manager)
+        public async Task<IActionResult> Create(Manager manager)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +61,7 @@ namespace ProjectPrototype.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", manager.TeamId);
             return View(manager);
         }
 
@@ -77,15 +78,13 @@ namespace ProjectPrototype.Controllers
             {
                 return NotFound();
             }
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", manager.TeamId);
             return View(manager);
         }
 
         // POST: Managers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ManagerId,FirstName,LastName,Phone,Email,TeamId")] Manager manager)
+        public async Task<IActionResult> Edit(int id, Manager manager)
         {
             if (id != manager.ManagerId)
             {
@@ -112,6 +111,7 @@ namespace ProjectPrototype.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", manager.TeamId);
             return View(manager);
         }
 
@@ -124,6 +124,7 @@ namespace ProjectPrototype.Controllers
             }
 
             var manager = await _context.Managers
+                .Include(m => m.Team)
                 .FirstOrDefaultAsync(m => m.ManagerId == id);
             if (manager == null)
             {
@@ -135,7 +136,6 @@ namespace ProjectPrototype.Controllers
 
         // POST: Managers/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var manager = await _context.Managers.FindAsync(id);

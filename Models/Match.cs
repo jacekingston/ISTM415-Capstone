@@ -10,9 +10,19 @@ namespace ProjectPrototype.Models
     {
         public int MatchId { get; set; }
         public int GameId { get; set; }
-        [Required(ErrorMessage = "Please enter a home team.")]
-        public int HomeTeamId { get; set; }
-        [Required(ErrorMessage = "Please enter an away team.")]
-        public int AwayTeamId { get; set; }
+        public int TeamId { get; set; }
+        public int Score { get; set; }
+
+        public Outcome Outcome { get; set; }
+
+        public Game Game { get; set; }
+        public Team Team { get; set; }
+    }
+
+    public enum Outcome
+    {
+        Win,
+        Loss,
+        Tie
     }
 }

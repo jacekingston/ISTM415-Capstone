@@ -23,5 +23,7 @@ namespace ProjectPrototype.Models
         public string Email { get; set; }
 
         public int TeamId { get; set; } //Foreign Key
+
+        public Team Team { get; set; }
     }
 }

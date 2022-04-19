@@ -11,9 +11,9 @@ namespace ProjectPrototype.Controllers
 {
     public class PlayersController : Controller
     {
-        private readonly PlayerContext _context;
+        private readonly RosterContext _context;
 
-        public PlayersController(PlayerContext context)
+        public PlayersController(RosterContext context)
         {
             _context = context;
         }
@@ -21,7 +21,8 @@ namespace ProjectPrototype.Controllers
         // GET: Players
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Players.ToListAsync());
+            var rosterContext = _context.Players.Include(p => p.Team);
+            return View(await rosterContext.ToListAsync());
         }
 
         // GET: Players/Details/5
@@ -33,6 +34,7 @@ namespace ProjectPrototype.Controllers
             }
 
             var player = await _context.Players
+                .Include(p => p.Team)
                 .FirstOrDefaultAsync(m => m.PlayerId == id);
             if (player == null)
             {
@@ -45,15 +47,13 @@ namespace ProjectPrototype.Controllers
         // GET: Players/Create
         public IActionResult Create()
         {
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName");
             return View();
         }
 
         // POST: Players/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlayerId,TeamId,FirstName,LastName,DOB,Height,Weight,NumAtBats,NumHits,NumHittingStrikeouts,NumHomeruns,NumRBI,NumWalks,Position,NumPlays,NumErrors,NumInningsPitched,NumEarnedRunsAllowed,NumWalksAllowed,NumPitchingStrikeouts,NumHomerunsAllowed")] Player player)
+        public async Task<IActionResult> Create(Player player)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +61,7 @@ namespace ProjectPrototype.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 
@@ -77,15 +78,13 @@ namespace ProjectPrototype.Controllers
             {
                 return NotFound();
             }
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 
         // POST: Players/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlayerId,TeamId,FirstName,LastName,DOB,Height,Weight,NumAtBats,NumHits,NumHittingStrikeouts,NumHomeruns,NumRBI,NumWalks,Position,NumPlays,NumErrors,NumInningsPitched,NumEarnedRunsAllowed,NumWalksAllowed,NumPitchingStrikeouts,NumHomerunsAllowed")] Player player)
+        public async Task<IActionResult> Edit(int id, Player player)
         {
             if (id != player.PlayerId)
             {
@@ -112,6 +111,7 @@ namespace ProjectPrototype.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TeamId"] = new SelectList(_context.Teams, "TeamId", "TeamName", player.TeamId);
             return View(player);
         }
 
@@ -124,6 +124,7 @@ namespace ProjectPrototype.Controllers
             }
 
             var player = await _context.Players
+                .Include(p => p.Team)
                 .FirstOrDefaultAsync(m => m.PlayerId == id);
             if (player == null)
             {
@@ -135,7 +136,6 @@ namespace ProjectPrototype.Controllers
 
         // POST: Players/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var player = await _context.Players.FindAsync(id);

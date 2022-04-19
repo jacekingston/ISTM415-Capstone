@@ -11,9 +11,9 @@ namespace ProjectPrototype.Controllers
 {
     public class GamesController : Controller
     {
-        private readonly GameContext _context;
+        private readonly RosterContext _context;
 
-        public GamesController(GameContext context)
+        public GamesController(RosterContext context)
         {
             _context = context;
         }
@@ -49,11 +49,8 @@ namespace ProjectPrototype.Controllers
         }
 
         // POST: Games/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GameId,DateTime,WinnerScore,LoserScore,Location,WinnerTeamId,LoserTeamId")] Game game)
+        public async Task<IActionResult> Create(Game game)
         {
             if (ModelState.IsValid)
             {
@@ -81,11 +78,8 @@ namespace ProjectPrototype.Controllers
         }
 
         // POST: Games/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GameId,DateTime,WinnerScore,LoserScore,Location,WinnerTeamId,LoserTeamId")] Game game)
+        public async Task<IActionResult> Edit(int id, Game game)
         {
             if (id != game.GameId)
             {
@@ -135,7 +129,6 @@ namespace ProjectPrototype.Controllers
 
         // POST: Games/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var game = await _context.Games.FindAsync(id);
