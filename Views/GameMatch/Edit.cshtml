@@ -1,0 +1,52 @@
+﻿@model ProjectPrototype.ViewModels.GameMatch
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Full Game</h1>
+
+<!-- This section should be at the top and show the Game datetime and locationm, and then the Team and their scores below/to the side-->
+<hr />
+<div class="row"> 
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MatchLinkW.Game.GameId" />
+            <div class="form-group">
+                <label asp-for="MatchLinkW.Game.DateTime" class="control-label"></label>
+                <input asp-for="MatchLinkW.Game.DateTime" class="form-control" />
+                <span asp-validation-for="MatchLinkW.Game.DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MatchLinkL.Game.Location" class="control-label"></label>
+                <input asp-for="MatchLinkL.Game.Location" class="form-control" />
+                <span asp-validation-for="MatchLinkL.Game.Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MatchLinkW.TeamId" class="control-label"></label>
+                <select asp-for="MatchLinkW.TeamId" class="form-control" asp-items="ViewBag.TeamIdA"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MatchLinkW.Score" class="control-label"></label>
+                <input asp-for="MatchLinkW.Score" class="form-control" />
+                <span asp-validation-for="MatchLinkW.Score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MatchLinkL.TeamId" class="control-label"></label>
+                <select asp-for="MatchLinkL.TeamId" class="form-control" asp-items="ViewBag.TeamIdB"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MatchLinkL.Score" class="control-label"></label>
+                <input asp-for="MatchLinkL.Score" class="form-control" />
+                <span asp-validation-for="MatchLinkL.Score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
