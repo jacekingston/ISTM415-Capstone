@@ -11,12 +11,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ProjectPrototype.Controllers
 {
-    public class GameMatchTeamController : Controller
+    public class GameMatchController : Controller
     {
 
         private readonly RosterContext _context;
 
-        public GameMatchTeamController(RosterContext context)
+        public GameMatchController(RosterContext context)
         {
             _context = context;
         }
@@ -36,6 +36,8 @@ namespace ProjectPrototype.Controllers
                 // Hack to fill in object references
                 match.Game = _context.Games.Find(match.GameId);
                 match.Team = _context.Teams.Find(match.TeamId);
+                _context.Matches.Update(match);
+                
 
                 if (!groups.ContainsKey(match.GameId))
                     groups.Add(match.GameId, new List<Match>());
@@ -43,7 +45,9 @@ namespace ProjectPrototype.Controllers
 
             }
 
-            List<GameMatchTeam> fullGames = new List<GameMatchTeam>();
+            await _context.SaveChangesAsync();
+
+            List<GameMatch> fullGames = new List<GameMatch>();
             // Iterate over match groupings
             foreach (var groupings in groups)
             {
@@ -94,7 +98,7 @@ namespace ProjectPrototype.Controllers
                 }
             }
 
-            List<GameMatchTeam> fullGames = new List<GameMatchTeam>();
+            List<GameMatch> fullGames = new List<GameMatch>();
             // Iterate over match groupings
             foreach (var groupings in groups)
             {
@@ -108,11 +112,11 @@ namespace ProjectPrototype.Controllers
             return View(fullGames);
         }
 
-        private GameMatchTeam DetermineGameWinner(Match a, Match b)
+        private GameMatch DetermineGameWinner(Match a, Match b)
         {
             if (a.Score > b.Score)
             {
-                return new GameMatchTeam
+                return new GameMatch
                 {
                     MatchLinkW = a,
                     MatchLinkL = b
@@ -122,7 +126,7 @@ namespace ProjectPrototype.Controllers
             else if (a.Score < b.Score)
             {
                 // B is Winner
-                return new GameMatchTeam
+                return new GameMatch
                 {
                     MatchLinkW = b,
                     MatchLinkL = a
@@ -131,7 +135,7 @@ namespace ProjectPrototype.Controllers
             else if (a.Score == b.Score)
             {
                 // Tie!
-                return new GameMatchTeam
+                return new GameMatch
                 {
                     MatchLinkW = a,
                     MatchLinkL = b
@@ -150,7 +154,7 @@ namespace ProjectPrototype.Controllers
 
         // POST: Players/Create
         [HttpPost]
-        public async Task<IActionResult> Create(GameMatchTeam fullGame)
+        public async Task<IActionResult> Create(GameMatch fullGame)
         {
             if (ModelState.IsValid)
             {
@@ -186,7 +190,111 @@ namespace ProjectPrototype.Controllers
             return View(fullGame);
         }
 
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var game = await _context.Games.FindAsync(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            var matches = _context.Matches.Where(m => m.GameId == game.GameId).ToList();
+            if(matches.Count() != 2)
+            {
+                return NotFound();
+            }
+
+            var a = matches.ElementAt(0);
+            var b = matches.ElementAt(1);
+            var gameMatch = DetermineGameWinner(a, b);
+
+            ViewData["TeamIdA"] = new SelectList(_context.Teams, "TeamId", "TeamName", gameMatch.MatchLinkW.TeamId);
+            ViewData["TeamIdB"] = new SelectList(_context.Teams, "TeamId", "TeamName", gameMatch.MatchLinkL.TeamId);
+            return View(gameMatch);
+        }
+
+        // POST: Matches/Edit/5
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, GameMatch fullGame)
+        {
+            if (id != fullGame.MatchLinkW.Game.GameId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    fullGame.MatchLinkL.Game = fullGame.MatchLinkW.Game;
+                    // Add Game
+                    _context.Update(fullGame.MatchLinkW.Game);
+                    //_context.Update(fullGame.MatchLinkL.Game);
+                    // Save so auto ID is generated
+                    await _context.SaveChangesAsync();
+
+                    // Add Matches
+                    _context.Update(fullGame.MatchLinkW);
+                    _context.Update(fullGame.MatchLinkL);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_context.Games.Any(g => g.GameId == fullGame.MatchLinkW.GameId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["TeamIdA"] = new SelectList(_context.Teams, "TeamId", "TeamName", fullGame.MatchLinkW.TeamId);
+            ViewData["TeamIdB"] = new SelectList(_context.Teams, "TeamId", "TeamName", fullGame.MatchLinkL.TeamId);
+            return View(fullGame);
+        }
+
+        public async Task<IActionResult> Stats(int? id)
+        {
+            #region Build GameMatch
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var game = await _context.Games.FindAsync(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            var matches = _context.Matches.Where(m => m.GameId == game.GameId).ToList();
+            if (matches.Count() != 2)
+            {
+                return NotFound();
+            }
+
+            var a = matches.ElementAt(0);
+            var b = matches.ElementAt(1);
+            var gameMatch = DetermineGameWinner(a, b);
+
+            return View(gameMatch);
+            #endregion
+        }
+
+        // POST: Matches/Edit/5
+        [HttpPost]
+        public async Task<IActionResult> Stats(int id, GameMatch fullGame)
+        {
+            return View(fullGame);
+        }
     }
-
-
 }

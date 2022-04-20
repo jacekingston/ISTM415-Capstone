@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectPrototype.ViewModels.GameMatchTeam>
+﻿@model IEnumerable<ProjectPrototype.ViewModels.GameMatch>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,7 +6,7 @@
 
 <h1>Full Game View - (Core Business Process)</h1>
 
-<form asp-controller="GameMatchTeam" asp-action="Index">
+<form asp-controller="GameMatch" asp-action="Index">
     <p>
         Title: <input type="text" name="SearchString" />
         <input type="submit" value="Filter" />
@@ -63,9 +63,9 @@
                         @Html.DisplayFor(modelItem => item.MatchLinkW.Game.Location)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.MatchLinkW.GameId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.MatchLinkW.GameId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.MatchLinkW.GameId">Delete</a>
+                        <a asp-action="Stats" asp-route-Id="@item.MatchLinkW.Game.GameId">Game Stats</a> |
+                        <a asp-action="Edit" asp-route-Id="@item.MatchLinkW.Game.GameId">Edit</a> |
+                        <a asp-action="Delete" asp-route-Id="@item.MatchLinkW.Game.GameId">Delete</a>
                     </td>
                 </tr>
                 }
