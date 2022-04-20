@@ -37,7 +37,7 @@ namespace ProjectPrototype.Models
         public int NumWalks { get; set; }
 
         //Defensive stats
-        [Required(ErrorMessage = "")]
+        [Required(ErrorMessage = "Please enter a position.")]
         public string Position { get; set; }
         public int NumPlays { get; set; }
         public int NumErrors { get; set; }
@@ -51,5 +51,44 @@ namespace ProjectPrototype.Models
 
         public Team Team { get; set; }
 
+
+        public string getDateOfBirthDate()
+        {
+            return this.DOB.ToString("MM/dd/yyyy");
+        }
+
+        public string calculateHeight()
+        {
+            int feet = this.Height / 12;
+            int inches = this.Height % 12;
+            return feet.ToString() + "'" + inches.ToString();
+        }
+
+        public decimal calculateBattingAverage()
+        {
+            if (this.NumAtBats > 0)
+            {
+                return Math.Round(Convert.ToDecimal(this.NumHits) / Convert.ToDecimal(this.NumAtBats), 3);
+            }
+            return 0.000m;
+        }
+
+        public decimal calculateFieldingPercentage()
+        {
+            if (this.NumPlays > 0)
+            {
+                return Math.Round(Convert.ToDecimal(this.NumPlays - this.NumErrors) / Convert.ToDecimal(this.NumPlays), 3);
+            }
+            return 0.000m;
+        }
+
+        public decimal calculateERA()
+        {
+            if (this.NumInningsPitched > 0)
+            {
+                return Math.Round(Convert.ToDecimal(this.NumEarnedRunsAllowed * 9) / Convert.ToDecimal(this.NumInningsPitched), 2);
+            }
+            return 0.00m;
+        }
     }
 }

@@ -4,132 +4,114 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>@Model.FirstName @Model.LastName Details</h1>
 
 <div>
-    <h4>Player</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
+        <dt class="col-sm-2">
+            First Name
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
+        <dt class="col-sm-2">
+            Last Name
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DOB)
+        <dt class="col-sm-2">
+            Date-of-Birth
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DOB)
+        <dd class="col-sm-10">
+            @Model.getDateOfBirthDate()
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Height)
+        <dt class="col-sm-2">
+            Height
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Height)
+        <dd class="col-sm-10">
+            @Model.calculateHeight()
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Weight)
+        <dt class="col-sm-2">
+            Weight
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Weight)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumAtBats)
+        <dt class="col-sm-2">
+            Team
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumAtBats)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Team.TeamName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumHits)
+        <dt class="col-sm-2">
+            Position
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumHits)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumHittingStrikeouts)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumHittingStrikeouts)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumHomeruns)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumHomeruns)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumRBI)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumRBI)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumWalks)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumWalks)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Position)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Position)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumPlays)
+        <dt class="col-sm-2">
+            Batting Average
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumPlays)
+        <dd class="col-sm-10">
+            @Model.calculateBattingAverage()
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumErrors)
+        <dt class="col-sm-2">
+            Hitting Strikeouts
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumErrors)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumHittingStrikeouts)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumInningsPitched)
+        <dt class="col-sm-2">
+            HR
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumInningsPitched)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumHomeruns)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumEarnedRunsAllowed)
+        <dt class="col-sm-2">
+            RBIs
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumEarnedRunsAllowed)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumRBI)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumWalksAllowed)
+        <dt class="col-sm-2">
+            Walks
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumWalksAllowed)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumWalks)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumPitchingStrikeouts)
+        <dt class="col-sm-2">
+            Fielding Percentage
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
+            @Model.calculateFieldingPercentage()
+        </dd>
+        <dt class="col-sm-2">
+            ERA
+        </dt>
+        <dd class="col-sm-10">
+            @Model.calculateERA()
+        </dd>
+        <dt class="col-sm-2">
+            Pitching Strikeouts
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NumPitchingStrikeouts)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumHomerunsAllowed)
+        <dt class="col-sm-2">
+            Walks Allowed
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumWalksAllowed)
+        </dd>
+        <dt class="col-sm-2">
+            HR Allowed
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NumHomerunsAllowed)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Team)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Team.Mascot)
-        </dd>
+
     </dl>
 </div>
 <div>
