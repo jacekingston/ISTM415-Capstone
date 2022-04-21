@@ -13,32 +13,39 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="MatchLinkW.Game.DateTime" class="control-label"></label>
-                <input asp-for="MatchLinkW.Game.DateTime" class="form-control" />
-                <span asp-validation-for="MatchLinkW.Game.DateTime" class="text-danger"></span>
+                @Html.HiddenFor(model => model.Game.GameId)
+                <label asp-for="Game.DateTime" class="control-label"></label>
+                <input asp-for="Game.DateTime" class="form-control" />
+                <span asp-validation-for="Game.DateTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MatchLinkW.Game.Location" class="control-label"></label>
-                <input asp-for="MatchLinkW.Game.Location" class="form-control" />
-                <span asp-validation-for="MatchLinkW.Game.Location" class="text-danger"></span>
+                <label asp-for="Game.Location" class="control-label"></label>
+                <input asp-for="Game.Location" class="form-control" />
+                <span asp-validation-for="Game.Location" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MatchLinkW.TeamId" class="control-label"></label>
-                <select asp-for="MatchLinkW.TeamId" class="form-control" asp-items="ViewBag.TeamIdA"></select>
+                <label asp-for="TeamW.TeamId" class="control-label"></label>
+                <select asp-for="TeamW.TeamId" class="form-control" asp-items="ViewBag.TeamIdA"></select>
             </div>
             <div class="form-group">
-                <label asp-for="MatchLinkW.Score" class="control-label"></label>
-                <input asp-for="MatchLinkW.Score" class="form-control" />
-                <span asp-validation-for="MatchLinkW.Score" class="text-danger"></span>
+                @Html.DisplayFor(model => model.MatchW.MatchId)
+                @Html.DisplayFor(model => model.MatchW.TeamId)
+                @Html.DisplayFor(model => model.MatchW.GameId)
+                <label asp-for="MatchW.Score" class="control-label"></label>
+                <input asp-for="MatchW.Score" class="form-control" />
+                <span asp-validation-for="MatchW.Score" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MatchLinkL.TeamId" class="control-label"></label>
-                <select asp-for="MatchLinkL.TeamId" class="form-control" asp-items="ViewBag.TeamIdB"></select>
+                <label asp-for="TeamL.TeamId" class="control-label"></label>
+                <select asp-for="TeamL.TeamId" class="form-control" asp-items="ViewBag.TeamIdB"></select>
             </div>
             <div class="form-group">
-                <label asp-for="MatchLinkL.Score" class="control-label"></label>
-                <input asp-for="MatchLinkL.Score" class="form-control" />
-                <span asp-validation-for="MatchLinkL.Score" class="text-danger"></span>
+                @Html.DisplayFor(model => model.MatchL.MatchId)
+                @Html.DisplayFor(model => model.MatchL.TeamId)
+                @Html.DisplayFor(model => model.MatchL.GameId)
+                <label asp-for="MatchL.Score" class="control-label"></label>
+                <input asp-for="MatchL.Score" class="form-control" />
+                <span asp-validation-for="MatchL.Score" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

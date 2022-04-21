@@ -8,8 +8,13 @@ namespace ProjectPrototype.ViewModels
 {
     public class GameMatch
     {
-        public Match MatchLinkW { get; set; }
-        public Match MatchLinkL { get; set; }
+
+        public Game Game { get; set; }
+        public Match MatchW { get; set; }
+
+        public Team TeamW { get; set; }
+        public Match MatchL { get; set; }
+        public Team TeamL { get; set; }
 
         public GameMatch()
         {
