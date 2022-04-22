@@ -124,6 +124,14 @@
             }
         </tbody>
     </table>
-    <a asp-action="Index" asp-controller="Home">Go back home</a>
+    <div>
+        <a asp-action="Index" asp-controller="Home">Go back home</a>
+    </div>
+    <form asp-action="PopulatePlayers">
+        <p>
+            Admin Populate: <input type="number" name="count" />
+            <input type="submit" value="Populate" />
+        </p>
+    </form>
 </div>
 

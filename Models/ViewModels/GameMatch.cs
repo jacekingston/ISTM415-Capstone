@@ -21,4 +21,16 @@ namespace ProjectPrototype.ViewModels
 
         }
     }
+
+    public class GameMatchStats : GameMatch
+    {
+        public IEnumerable<Player> PlayersW { get; set; }
+
+        public IEnumerable<Player> PlayersL { get; set; }
+
+        public GameMatchStats()
+        {
+
+        }
+    }
 }

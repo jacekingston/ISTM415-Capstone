@@ -262,8 +262,6 @@ namespace ProjectPrototype.Controllers
 
         public async Task<IActionResult> Stats(int? id)
         {
-            #region Build GameMatch
-
             if (id == null)
             {
                 return NotFound();
@@ -285,13 +283,28 @@ namespace ProjectPrototype.Controllers
             var b = matches.ElementAt(1);
             var gameMatch = DetermineGameWinner(a, b);
 
-            return View(gameMatch);
-            #endregion
+            GameMatchStats g = new GameMatchStats
+            {
+                Game = gameMatch.Game,
+                MatchW = gameMatch.MatchW,
+                MatchL = gameMatch.MatchL,
+                TeamW = gameMatch.TeamW,
+                TeamL = gameMatch.TeamL
+            };
+
+            g.PlayersW = _context.Players.Where(p => p.TeamId == g.TeamW.TeamId);
+            g.PlayersL = _context.Players.Where(p => p.TeamId == g.TeamL.TeamId);
+
+            ViewData["Teams"] = new SelectList(new List<Team> {g.TeamW, g.TeamL }, "TeamId", "TeamName");
+            ViewData["PlayersW"] = new SelectList(g.PlayersW, "PlayerId", "FirstName" + ", " + "LastName");
+            ViewData["PlayersL"] = new SelectList(g.PlayersL, "PlayerId", "FirstName" + ", " + "LastName");
+
+            return View(g);
         }
 
         // POST: Matches/Edit/5
         [HttpPost]
-        public async Task<IActionResult> Stats(int id, GameMatch fullGame)
+        public async Task<IActionResult> Stats(GameMatchStats fullGame)
         {
             return View(fullGame);
         }
