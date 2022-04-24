@@ -99,7 +99,7 @@ namespace ProjectPrototype.Models
             );
 
             // Game
-            modelBuilder.Entity<Game>().HasData(
+            /*modelBuilder.Entity<Game>().HasData(
                 new Game
                 {
                     GameId = 1,
@@ -124,10 +124,10 @@ namespace ProjectPrototype.Models
                     DateTime = new DateTime(2022, 4, 10, 2, 30, 0),
                     Location = "College Station, TX"
                 }
-            );
+            );*/
 
             // Match (Each game needs 2 matches)
-            modelBuilder.Entity<Match>().HasData(
+            /*modelBuilder.Entity<Match>().HasData(
                 new Match
                 {
                     MatchId = 1,
@@ -195,7 +195,7 @@ namespace ProjectPrototype.Models
                     Score = 10,
                     Outcome = Outcome.Loss
                 }
-            );
+            );*/
 
             // Manager
             modelBuilder.Entity<Manager>().HasData(
@@ -274,7 +274,7 @@ namespace ProjectPrototype.Models
             );
 
             // Player
-            modelBuilder.Entity<Player>().HasData(
+            /*modelBuilder.Entity<Player>().HasData(
                 new Player
                 {
                     PlayerId = 1,
@@ -467,7 +467,7 @@ namespace ProjectPrototype.Models
                     NumPitchingStrikeouts = 0,
                     NumHomerunsAllowed = 0
                 }
-            );
+            );*/
 
             
         }

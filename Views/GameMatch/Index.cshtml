@@ -47,33 +47,38 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TeamW.TeamName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MatchW.Score)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TeamL.TeamName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MatchL.Score)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Game.DateTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Game.Location)
-                    </td>
-                    <td>
-                        <a asp-action="Stats" asp-route-Id="@item.Game.GameId">Game Stats</a> |
-                        <a asp-action="Edit" asp-route-Id="@item.Game.GameId">Edit</a> |
-                        <a asp-action="Delete" asp-route-Id="@item.Game.GameId">Delete</a>
-                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeamW.TeamName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatchW.Score)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeamL.TeamName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatchL.Score)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Game.DateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Game.Location)
+                        </td>
+                        <td>
+                            <a asp-action="Stats" asp-route-Id="@item.Game.GameId">Game Stats</a> |
+                            <a asp-action="Edit" asp-route-Id="@item.Game.GameId">Edit</a> |
+                            <a asp-action="Delete" asp-route-Id="@item.Game.GameId">Delete</a>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-    
+</form>
+<form asp-action="SimulateSeason">
+    <div>
+        Admin Simulate Season: <input type="number" name="year" />
+        <input type="submit" value="Simulate" class="btn btn-primary" />
+    </div>
 </form>

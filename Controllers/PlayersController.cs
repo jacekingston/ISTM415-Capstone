@@ -154,7 +154,15 @@ namespace ProjectPrototype.Controllers
         {
             var DBPopulator = new DBPopulator();
             DBPopulator.PopluateAllTeams(_context, count);
-            return await Index();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PopulatePlayerStats()
+        {
+            var DBPopulator = new DBPopulator();
+            DBPopulator.PopulatePlayerStats(_context);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

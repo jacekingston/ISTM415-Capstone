@@ -366,5 +366,64 @@ namespace ProjectPrototype.Controllers
         }
 
 
+        public async Task<IActionResult> SimulateSeason(int year)
+        {
+            var DBPopulator = new DBPopulator();
+            DBPopulator.SimulateSeason(_context, year);
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Matches/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var game = await _context.Games.FindAsync(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            var matches = _context.Matches.Where(m => m.GameId == game.GameId).ToList();
+            if (matches.Count() != 2)
+            {
+                return NotFound();
+            }
+
+            var a = matches.ElementAt(0);
+            var b = matches.ElementAt(1);
+            var gameMatch = DetermineGameWinner(a, b);
+
+            return View(gameMatch);
+        }
+
+        // POST: Matches/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            var matches = _context.Matches.Where(m => m.GameId == game.GameId).ToList();
+            if (matches.Count() != 2)
+            {
+                return NotFound();
+            }
+
+            var a = matches.ElementAt(0);
+            var b = matches.ElementAt(1);
+
+            _context.Games.Remove(game);
+            _context.Matches.RemoveRange(a, b);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

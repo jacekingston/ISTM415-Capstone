@@ -128,10 +128,15 @@
         <a asp-action="Index" asp-controller="Home">Go back home</a>
     </div>
     <form asp-action="PopulatePlayers">
-        <p>
+        <div>
             Admin Populate: <input type="number" name="count" />
-            <input type="submit" value="Populate" />
-        </p>
+            <input type="submit" value="Populate" class="btn btn-primary" />
+        </div>
     </form>
+    <!--<form asp-action="PopulatePlayerStats">
+        <div class="form-group">
+            <input type="submit" value="Populate Stats" class="btn btn-primary"/>
+        </div>
+    </form>-->
 </div>
 

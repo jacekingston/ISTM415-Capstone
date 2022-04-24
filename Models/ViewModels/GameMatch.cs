@@ -9,7 +9,6 @@ namespace ProjectPrototype.ViewModels
 {
     public class GameMatch
     {
-
         public Game Game { get; set; }
         public Match MatchW { get; set; }
 
