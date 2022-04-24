@@ -290,7 +290,7 @@ namespace ProjectPrototype.Controllers
                 TeamL = gameMatch.TeamL
             };
 
-            var players = _context.Players.Where(p => p.TeamId == g.TeamW.TeamId);
+            var players = _context.Players.Where(p => p.TeamId == g.TeamW.TeamId).OrderBy(p => p.LastName);
 
             var PlayersSelectable = players.Select(s => new
             {
@@ -344,7 +344,7 @@ namespace ProjectPrototype.Controllers
                 fullGame.DummyPlayer.SetAsDummy(fullGame.SelectedPlayer);
 
                 // Filled Selected List based on team and player pick
-                var players = _context.Players.Where(p => p.TeamId == fullGame.SelectedTeamId);
+                var players = _context.Players.Where(p => p.TeamId == fullGame.SelectedTeamId).OrderBy(p => p.LastName);
 
                 var PlayersSelectable = players.Select(s => new
                 {
