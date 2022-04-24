@@ -16,16 +16,16 @@ namespace ProjectPrototype.Models
             r = new Random();
         }
 
-        public async void PopluateAllTeams(RosterContext context, int numPlayers)
+        public void PopluateAllTeams(RosterContext context, int numPlayers)
         {
             foreach(var team in context.Teams)
             {
                 PopulatePlayers(context.Players, team.TeamId, numPlayers);
             }
-            await context.SaveChangesAsync();
+            context.SaveChanges();
         }
 
-        public async void PopulatePlayers(DbSet<Player> players, int TeamID, int numPlayers)
+        public void PopulatePlayers(DbSet<Player> players, int TeamID, int numPlayers)
         {
             Random r = new Random();
             for (int i = 0; i < numPlayers; i++)
@@ -34,9 +34,9 @@ namespace ProjectPrototype.Models
                 p.TeamId = TeamID;
                 string name = names[r.Next(0, names.Length)];
                 p.FirstName = name.Substring(0, name.IndexOf(' '));
-                p.LastName = name.Substring(name.IndexOf(' ') + 1, name.Length);
+                p.LastName = name.Substring(name.IndexOf(' ') + 1);
                 p.DOB = DateTime.Now;
-                p.DOB -= p.DOB - new DateTime(year: 12, r.Next(0, 12), r.Next(0, 30));
+                p.DOB -= p.DOB - new DateTime(year: 2012, r.Next(1, 12), r.Next(1, 30));
                 p.Height = r.Next(50, 65);
                 p.Weight = r.Next(100,190);
                 p.NumAtBats = 0;
@@ -46,13 +46,13 @@ namespace ProjectPrototype.Models
                 p.NumRBI = 0;
                 p.NumWalks = 0;
                 p.Position = positions[r.Next(0,positions.Length)];
-                await players.AddAsync(p);
+                players.Add(p);
             }
         }
 
         string[] positions = new string[]
         {
-            "Pitcher"," Catcher"," First Baseman"," Second Baseman"," Third Baseman"," Shortstop"," Left Field"," Center Field"," Right Field"
+            "Pitcher","Catcher","First Baseman","Second Baseman","Third Baseman","Shortstop","Left Field","Center Field","Right Field"
         };
 
         string[] names = new string[]

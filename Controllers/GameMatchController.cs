@@ -292,21 +292,79 @@ namespace ProjectPrototype.Controllers
                 TeamL = gameMatch.TeamL
             };
 
-            g.PlayersW = _context.Players.Where(p => p.TeamId == g.TeamW.TeamId);
-            g.PlayersL = _context.Players.Where(p => p.TeamId == g.TeamL.TeamId);
+            var players = _context.Players.Where(p => p.TeamId == g.TeamW.TeamId);
 
-            ViewData["Teams"] = new SelectList(new List<Team> {g.TeamW, g.TeamL }, "TeamId", "TeamName");
-            ViewData["PlayersW"] = new SelectList(g.PlayersW, "PlayerId", "FirstName" + ", " + "LastName");
-            ViewData["PlayersL"] = new SelectList(g.PlayersL, "PlayerId", "FirstName" + ", " + "LastName");
+            var PlayersSelectable = players.Select(s => new
+            {
+                PlayerId = s.PlayerId,
+                DisplayName = s.FirstName + ", " + s.LastName + ": " + s.Position
+            }).ToList();
+
+            ViewData["TeamSelect"] = new SelectList(new List<Team> {g.TeamW, g.TeamL }, "TeamId", "TeamName");
+            ViewData["PlayerSelect"] = new SelectList(PlayersSelectable, "PlayerId", "DisplayName");
 
             return View(g);
         }
 
         // POST: Matches/Edit/5
         [HttpPost]
-        public async Task<IActionResult> Stats(GameMatchStats fullGame)
+        public async Task<IActionResult> Stats(GameMatchStats fullGame, string saveDummy = "")
         {
+            bool applyDummy = saveDummy != "";
+            if (ModelState.IsValid)
+            {
+                // Save Player Stats
+                if (fullGame.SelectedPlayer != null && applyDummy)
+                {
+                    var savePlayer = _context.Players.FirstOrDefault(p => p.PlayerId == fullGame.SelectedPlayerId);
+                    savePlayer.AddGameStats(fullGame.DummyPlayer);
+                    _context.Update(savePlayer);
+                    await _context.SaveChangesAsync();
+                }
+
+                // Match Stats
+                var matches = _context.Matches.Where(m => m.GameId == fullGame.Game.GameId).ToList();
+                if (matches.Count() != 2)
+                {
+                    return NotFound();
+                }
+
+                var a = matches.ElementAt(0);
+                var b = matches.ElementAt(1);
+                var gameMatch = DetermineGameWinner(a, b);
+                fullGame.MatchW = gameMatch.MatchW;
+                fullGame.MatchL = gameMatch.MatchL;
+
+                // Prep selected player and dummy
+                fullGame.SelectedPlayer = _context.Players.FirstOrDefault(p => p.PlayerId == fullGame.SelectedPlayerId);
+
+                if (fullGame.DummyPlayer == null)
+                    fullGame.DummyPlayer = new Player();
+
+                //ModelState.Remove("GameMatch.DummyPlayer");
+                ModelState.Clear();
+                fullGame.DummyPlayer.SetAsDummy(fullGame.SelectedPlayer);
+
+                // Filled Selected List based on team and player pick
+                var players = _context.Players.Where(p => p.TeamId == fullGame.SelectedTeamId);
+
+                var PlayersSelectable = players.Select(s => new
+                {
+                    PlayerId = s.PlayerId,
+                    DisplayName = s.FirstName + ", " + s.LastName + ": " + s.Position
+                }).ToList();
+
+                var SelectableTeam = fullGame.TeamW.TeamId == fullGame.SelectedTeamId ? fullGame.TeamW : fullGame.TeamL;
+                var SelectablePlayer = PlayersSelectable.FirstOrDefault(p => p.PlayerId == fullGame.SelectedPlayerId);
+
+                ViewData["TeamSelect"] = new SelectList(new List<Team> { fullGame.TeamW, fullGame.TeamL }, "TeamId", "TeamName", SelectableTeam);
+                ViewData["PlayerSelect"] = new SelectList(PlayersSelectable, "PlayerId", "DisplayName", SelectablePlayer);
+
+
+            }
             return View(fullGame);
         }
+
+
     }
 }

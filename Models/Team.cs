@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace ProjectPrototype.Models
 {
@@ -11,6 +12,7 @@ namespace ProjectPrototype.Models
         public int TeamId { get; set; }
 
         [Required(ErrorMessage = "Please enter a team name.")]
+        [DisplayName("Team Name")]
         public string TeamName { get; set; }
 
         [Required(ErrorMessage = "Please enter a team mascot.")]

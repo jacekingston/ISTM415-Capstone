@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProjectPrototype.Models;
+using System.ComponentModel;
 
 namespace ProjectPrototype.ViewModels
 {
@@ -24,10 +25,14 @@ namespace ProjectPrototype.ViewModels
 
     public class GameMatchStats : GameMatch
     {
-        public IEnumerable<Player> PlayersW { get; set; }
+        [DisplayName("Select Team")]
+        public int? SelectedTeamId { get; set; }
+        [DisplayName("Select Player")]
+        public int? SelectedPlayerId { get; set; }
 
-        public IEnumerable<Player> PlayersL { get; set; }
+        public Player SelectedPlayer { get; set; }
 
+        public Player DummyPlayer { get; set; }
         public GameMatchStats()
         {
 
