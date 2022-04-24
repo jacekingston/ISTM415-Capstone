@@ -147,13 +147,11 @@ namespace ProjectPrototype.Controllers
         {
             if (ModelState.IsValid)
             {
-                Match a = fullGame.MatchW;
-                Match b = fullGame.MatchL;
                 // Add Game
                 var trackGame = _context.Add(new Game
                 {
-                    DateTime = a.Game.DateTime,
-                    Location = a.Game.Location
+                    DateTime = fullGame.Game.DateTime,
+                    Location = fullGame.Game.Location
                 });
                 // Save so auto ID is generated
                 await _context.SaveChangesAsync();
@@ -162,14 +160,14 @@ namespace ProjectPrototype.Controllers
                 _context.Add(new Match
                 {
                     GameId = trackGame.Entity.GameId,
-                    TeamId = a.TeamId,
-                    Score = a.Score
+                    TeamId = fullGame.TeamW.TeamId,
+                    Score = fullGame.MatchW.Score
                 });
                 _context.Add(new Match
                 {
                     GameId = trackGame.Entity.GameId,
-                    TeamId = b.TeamId,
-                    Score = b.Score
+                    TeamId = fullGame.TeamL.TeamId,
+                    Score = fullGame.MatchL.Score
                 });
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
