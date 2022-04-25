@@ -11,6 +11,9 @@
         Title: <input type="text" name="SearchString" />
         <input type="submit" value="Filter" />
     </p>
+    <p>
+    <a href="https://localhost:7200/Home/Index">Home</a>
+    </p>
 </form>
 <form action="Controllers/GamesController" method="post">
     <div>
@@ -43,33 +46,39 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MatchLinkW.Team.TeamName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MatchLinkW.Score)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MatchLinkL.Team.TeamName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MatchLinkL.Score)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MatchLinkW.Game.DateTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MatchLinkW.Game.Location)
-                    </td>
-                    <td>
-                        <a asp-action="Stats" asp-route-Id="@item.MatchLinkW.Game.GameId">Game Stats</a> |
-                        <a asp-action="Edit" asp-route-Id="@item.MatchLinkW.Game.GameId">Edit</a> |
-                        <a asp-action="Delete" asp-route-Id="@item.MatchLinkW.Game.GameId">Delete</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeamW.TeamName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatchW.Score)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeamL.TeamName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatchL.Score)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Game.DateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Game.Location)
+                        </td>
+                        <td>
+                            <a asp-action="Stats" asp-route-Id="@item.Game.GameId">Game Stats</a> |
+                            <a asp-action="Edit" asp-route-Id="@item.Game.GameId">Edit</a> |
+                            <a asp-action="Delete" asp-route-Id="@item.Game.GameId">Delete</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
+    </div>
+</form>
+<form asp-action="SimulateSeason">
+    <div>
+        Admin Simulate Season: <input type="number" name="year" />
+        <input type="submit" value="Simulate" class="btn btn-primary" />
     </div>
 </form>

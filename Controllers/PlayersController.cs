@@ -148,5 +148,21 @@ namespace ProjectPrototype.Controllers
         {
             return _context.Players.Any(e => e.PlayerId == id);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PopulatePlayers(int count)
+        {
+            var DBPopulator = new DBPopulator();
+            DBPopulator.PopluateAllTeams(_context, count);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PopulatePlayerStats()
+        {
+            var DBPopulator = new DBPopulator();
+            DBPopulator.PopulatePlayerStats(_context);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
