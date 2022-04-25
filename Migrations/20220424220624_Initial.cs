@@ -100,13 +100,13 @@ namespace ProjectPrototype.Migrations
                     DOB = table.Column<DateTime>(nullable: false),
                     Height = table.Column<int>(nullable: false),
                     Weight = table.Column<int>(nullable: false),
+                    Position = table.Column<string>(nullable: false),
                     NumAtBats = table.Column<int>(nullable: false),
                     NumHits = table.Column<int>(nullable: false),
                     NumHittingStrikeouts = table.Column<int>(nullable: false),
                     NumHomeruns = table.Column<int>(nullable: false),
                     NumRBI = table.Column<int>(nullable: false),
                     NumWalks = table.Column<int>(nullable: false),
-                    Position = table.Column<string>(nullable: false),
                     NumPlays = table.Column<int>(nullable: false),
                     NumErrors = table.Column<int>(nullable: false),
                     NumInningsPitched = table.Column<int>(nullable: false),
@@ -124,17 +124,6 @@ namespace ProjectPrototype.Migrations
                         principalTable: "Team",
                         principalColumn: "TeamId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "Game",
-                columns: new[] { "GameId", "DateTime", "Location" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2022, 4, 10, 2, 30, 0, 0, DateTimeKind.Unspecified), "College Station, TX" },
-                    { 2, new DateTime(2022, 4, 10, 2, 30, 0, 0, DateTimeKind.Unspecified), "College Station, TX" },
-                    { 3, new DateTime(2022, 4, 10, 2, 30, 0, 0, DateTimeKind.Unspecified), "College Station, TX" },
-                    { 4, new DateTime(2022, 4, 10, 2, 30, 0, 0, DateTimeKind.Unspecified), "College Station, TX" }
                 });
 
             migrationBuilder.InsertData(
@@ -158,43 +147,13 @@ namespace ProjectPrototype.Migrations
                 values: new object[,]
                 {
                     { 1, "mstevens@verizon.net", "Mike", "Stevens", 9723389204L, 1 },
-                    { 7, "TreyK@gmail.com", "Trey", "Kingston", 9725478392L, 7 },
-                    { 8, "KadeK@gmail.com", "Kade", "Kingston", 9725478392L, 8 },
                     { 2, "freemansports@gmail.com", "John", "Freeman", 9725478392L, 2 },
-                    { 5, "Deflate@gmail.com", "Tom", "Brady", 9725478392L, 5 },
                     { 3, "DubWalker@gmail.com", "Ryan", "Walker", 9725478392L, 3 },
+                    { 4, "goated@gmail.com", "Joe", "Burrow", 9725478392L, 4 },
+                    { 5, "Deflate@gmail.com", "Tom", "Brady", 9725478392L, 5 },
                     { 6, "OldBrett@gmail.com", "Brett", "Favre", 9725478392L, 6 },
-                    { 4, "goated@gmail.com", "Joe", "Burrow", 9725478392L, 4 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Match",
-                columns: new[] { "MatchId", "GameId", "Outcome", "Score", "TeamId" },
-                values: new object[,]
-                {
-                    { 5, 3, 2, 6, 5 },
-                    { 8, 4, 1, 10, 8 },
-                    { 7, 4, 0, 13, 7 },
-                    { 3, 2, 1, 3, 3 },
-                    { 2, 1, 0, 12, 2 },
-                    { 1, 1, 1, 2, 1 },
-                    { 4, 2, 0, 5, 4 },
-                    { 6, 3, 2, 6, 6 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Player",
-                columns: new[] { "PlayerId", "DOB", "FirstName", "Height", "LastName", "NumAtBats", "NumEarnedRunsAllowed", "NumErrors", "NumHits", "NumHittingStrikeouts", "NumHomeruns", "NumHomerunsAllowed", "NumInningsPitched", "NumPitchingStrikeouts", "NumPlays", "NumRBI", "NumWalks", "NumWalksAllowed", "Position", "TeamId", "Weight" },
-                values: new object[,]
-                {
-                    { 7, new DateTime(2013, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jackson", 57, "Frome", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "RF", 7, 91 },
-                    { 4, new DateTime(2013, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jackson", 57, "Frome", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "RF", 4, 91 },
-                    { 5, new DateTime(2013, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jackson", 57, "Frome", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "RF", 5, 91 },
-                    { 3, new DateTime(2013, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jackson", 57, "Frome", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "RF", 3, 91 },
-                    { 2, new DateTime(2013, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jackson", 57, "Frome", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "RF", 2, 91 },
-                    { 1, new DateTime(2013, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Max", 49, "Smith", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "C", 1, 65 },
-                    { 6, new DateTime(2013, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jackson", 57, "Frome", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "RF", 6, 91 },
-                    { 8, new DateTime(2013, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jackson", 57, "Frome", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "RF", 8, 91 }
+                    { 7, "TreyK@gmail.com", "Trey", "Kingston", 9725478392L, 7 },
+                    { 8, "KadeK@gmail.com", "Kade", "Kingston", 9725478392L, 8 }
                 });
 
             migrationBuilder.CreateIndex(

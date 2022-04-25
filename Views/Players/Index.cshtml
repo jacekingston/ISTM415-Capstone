@@ -4,146 +4,142 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Players View</h1>
+<div class="container">
+    <h1>Players View</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DOB)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Height)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumAtBats)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumHits)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumHittingStrikeouts)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumHomeruns)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumRBI)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumWalks)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Position)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumPlays)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumErrors)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumInningsPitched)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumEarnedRunsAllowed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumWalksAllowed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumPitchingStrikeouts)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumHomerunsAllowed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Team)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DOB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Height)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Weight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumAtBats)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumHits)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumHittingStrikeouts)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumHomeruns)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumRBI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumWalks)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumPlays)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumErrors)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumInningsPitched)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumEarnedRunsAllowed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumWalksAllowed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumPitchingStrikeouts)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumHomerunsAllowed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Team.Mascot)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PlayerId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PlayerId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PlayerId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p>
+        <div>
+            <a asp-action="Index" asp-controller="Home">Go back home</a>
+        </div>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Date-of-Birth
+                </th>
+                <th>
+                    Height
+                </th>
+                <th>
+                    Weight
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Team)
+                </th>
+                <th>
+                    Position
+                </th>
+                <th>
+                    Batting Average
+                </th>
+                <th>
+                    Hitting Strikeouts
+                </th>
+                <th>
+                    HR
+                </th>
+                <th>
+                    RBIs
+                </th>
+                <th>
+                    Walks
+                </th>
+                <th>
+                    Fielding Percentage
+                </th>
+                <th>
+                    ERA
+                </th>
+                <th>
+                    Pitching Strikeouts
+                </th>
+                <th>
+                    Walks Allowed
+                </th>
+                <th>
+                    HR Allowed
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @item.getDateOfBirthDate()
+                    </td>
+                    <td>
+                        @item.calculateHeight()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Weight) lbs
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Team.TeamName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        @item.calculateBattingAverage()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumHittingStrikeouts)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumHomeruns)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumRBI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumWalks)
+                    </td>
+                    <td>
+                        @item.calculateFieldingPercentage()
+                    </td>
+                    <td>
+                        @item.calculateERA()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumPitchingStrikeouts)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumWalksAllowed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumHomerunsAllowed)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.PlayerId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.PlayerId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.PlayerId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a asp-action="Index" asp-controller="Home">Go back home</a>
+    </div>
+    <form asp-action="PopulatePlayers">
+        <div>
+            Admin Populate: <input type="number" name="count" />
+            <input type="submit" value="Populate" class="btn btn-primary" />
+        </div>
+    </form>
+    <!--<form asp-action="PopulatePlayerStats">
+        <div class="form-group">
+            <input type="submit" value="Populate Stats" class="btn btn-primary"/>
+        </div>
+    </form>-->
+</div>
+

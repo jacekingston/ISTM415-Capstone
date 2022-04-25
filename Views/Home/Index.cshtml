@@ -2,31 +2,31 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to the BCS Little League Roster</h1>
-    <table align="center">
-        <tr><th>--------</th></tr>
-        <tr>
-            <th><a href="https://localhost:7200/GameMatchTeam/Index">Full Games</a></th>
-        </tr>
-        <tr><th>--------</th></tr>
-        <tr>
-            <th><a href="https://localhost:7200/Games/Index">Games</a></th>
-        </tr>
-        <tr>
-            <th><a href="https://localhost:7200/Matches/Index">Matches</a></th>
-        </tr>
-        <tr>
-            <th><a href="https://localhost:7200/Teams/Index">Teams</a></th>
-        </tr>
-        <tr>
-            <th><a href="https://localhost:7200/Players/Index">Players</a></th>
-        </tr>
-        <tr>
-            <th><a href="https://localhost:7200/Managers/Index">Managers</a></th>
-        </tr>
-    </table>
-    <br />
-    <img src="~/images/LittleLeague1.jpg" alt="Kids in Little league" />
+<div class="home">
+    <div class="home-title">
+        <h1>Welcome to the BCS Little League</h1>
+    </div>
+    <div class="databases-home">
+        <h1>League Stats and Data</h1>
+        <div class="table-buttons">
+            <a href="https://localhost:7200/Players/Index" class="view-table-link">Players</a>
+            <a href="https://localhost:7200/Teams/Index" class="view-table-link">Teams</a>
+            <a href="https://localhost:7200/Managers/Index" class="view-table-link">Managers</a>
+            <a href="https://localhost:7200/GameMatch/Index" class="view-table-link">Full Games</a>
+            <a href="https://localhost:7200/Games/Index" class="view-table-link">Games</a>
+            <a href="https://localhost:7200/Matches/Index" class="view-table-link">Matches</a>
+        </div>
+    </div>
+    <div class="about">
+        <div class="about-text">
+            <h1>About Our League</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <img src="~/images/bb-players-jumping.jpg" />
+    </div>
+
 </div>
+<footer>
+    <p>Phone Number: (816)233-0879 | Email: bcslittleague@sportslife.com | Address: 2231 Texas Ave, Bryan, TX 77801</p>
+</footer>
 
