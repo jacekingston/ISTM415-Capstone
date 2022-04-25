@@ -1,16 +1,19 @@
 ﻿@model ProjectPrototype.Models.Player
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Player";
 }
 
-<h4>Are you sure you want to delete this player?</h4>
-<div>
-    <h3>@Model.FirstName @Model.LastName</h3>
-    <hr />
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="PlayerId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="container">
+    <h4 class="table-title">Are you sure you want to delete this player?</h4>
+    <div>
+        <h3>@Model.FirstName @Model.LastName</h3>
+        <hr />
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="PlayerId" />
+            <input type="submit" value="Delete" class="table-management-button" />
+            <a class="table-management-button" asp-action="Index">Back To Players</a>
+        </form>
+    </div>
 </div>
+
