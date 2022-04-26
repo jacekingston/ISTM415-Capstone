@@ -19,10 +19,7 @@
                     @Html.DisplayNameFor(model => model.Mascot)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Wins)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Losses)
+                    Record
                 </th>
                 <th>
 
@@ -40,10 +37,7 @@
                         @Html.DisplayFor(modelItem => item.Mascot)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Wins)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Losses)
+                        @Html.DisplayFor(modelItem => item.Wins)-@Html.DisplayFor(modelItem => item.Losses)
                     </td>
                     <td>
                         <a class="table-management-button" asp-action="Edit" asp-route-id="@item.TeamId">Edit</a>

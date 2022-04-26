@@ -209,3 +209,13 @@ footer {
     margin-right: auto;
     margin-left: auto;
 }
+
+.filter {
+    margin-top: 30px;
+}
+
+.text-input {
+    border: 1px solid #949494;
+    border-radius: 4px;
+    outline: none;
+}

@@ -1,62 +1,62 @@
 ﻿@model ProjectPrototype.ViewModels.GameMatch
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Game";
 }
 
-<h1>Edit Full Game</h1>
-
-<!-- This section should be at the top and show the Game datetime and locationm, and then the Team and their scores below/to the side-->
-<hr />
-<div class="row"> 
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                @Html.HiddenFor(model => model.Game.GameId)
-                <label asp-for="Game.DateTime" class="control-label"></label>
-                <input asp-for="Game.DateTime" class="form-control" />
-                <span asp-validation-for="Game.DateTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Game.Location" class="control-label"></label>
-                <input asp-for="Game.Location" class="form-control" />
-                <span asp-validation-for="Game.Location" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                @Html.HiddenFor(model => model.TeamW.TeamName)
-                @Html.HiddenFor(model => model.TeamW.Mascot)
-                <label asp-for="TeamW.TeamId" class="control-label"></label>
-                <select asp-for="TeamW.TeamId" class="form-control" asp-items="ViewBag.TeamIdA"></select>
-            </div>
-            <div class="form-group">
-                @Html.HiddenFor(model => model.MatchW.MatchId)
-                @Html.HiddenFor(model => model.MatchW.TeamId)
-                @Html.HiddenFor(model => model.MatchW.GameId)
-                <label asp-for="MatchW.Score" class="control-label"></label>
-                <input asp-for="MatchW.Score" class="form-control" />
-                <span asp-validation-for="MatchW.Score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                @Html.HiddenFor(model => model.TeamL.TeamName)
-                @Html.HiddenFor(model => model.TeamL.Mascot)
-                <label asp-for="TeamL.TeamId" class="control-label"></label>
-                <select asp-for="TeamL.TeamId" class="form-control" asp-items="ViewBag.TeamIdB"></select>
-            </div>
-            <div class="form-group">
-                @Html.HiddenFor(model => model.MatchL.MatchId)
-                @Html.HiddenFor(model => model.MatchL.TeamId)
-                @Html.HiddenFor(model => model.MatchL.GameId)
-                <label asp-for="MatchL.Score" class="control-label"></label>
-                <input asp-for="MatchL.Score" class="form-control" />
-                <span asp-validation-for="MatchL.Score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container">
+    <h1 class="table-title">Edit Game</h1>
+    <!-- This section should be at the top and show the Game datetime and location, and then the Team and their scores below/to the side-->
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.TeamW.TeamName)
+                    @Html.HiddenFor(model => model.TeamW.Mascot)
+                    <label asp-for="TeamW.TeamId" class="control-label">Winner</label>
+                    <select asp-for="TeamW.TeamId" class="form-control" asp-items="ViewBag.TeamIdA"></select>
+                </div>
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.MatchW.MatchId)
+                    @Html.HiddenFor(model => model.MatchW.TeamId)
+                    @Html.HiddenFor(model => model.MatchW.GameId)
+                    <label asp-for="MatchW.Score" class="control-label">Winner Score</label>
+                    <input asp-for="MatchW.Score" class="form-control" />
+                    <span asp-validation-for="MatchW.Score" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.TeamL.TeamName)
+                    @Html.HiddenFor(model => model.TeamL.Mascot)
+                    <label asp-for="TeamL.TeamId" class="control-label">Loser</label>
+                    <select asp-for="TeamL.TeamId" class="form-control" asp-items="ViewBag.TeamIdB"></select>
+                </div>
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.MatchL.MatchId)
+                    @Html.HiddenFor(model => model.MatchL.TeamId)
+                    @Html.HiddenFor(model => model.MatchL.GameId)
+                    <label asp-for="MatchL.Score" class="control-label">Loser Score</label>
+                    <input asp-for="MatchL.Score" class="form-control" />
+                    <span asp-validation-for="MatchL.Score" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.Game.GameId)
+                    <label asp-for="Game.DateTime" class="control-label">Date/Time</label>
+                    <input asp-for="Game.DateTime" class="form-control" />
+                    <span asp-validation-for="Game.DateTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Game.Location" class="control-label">Location</label>
+                    <input asp-for="Game.Location" class="form-control" />
+                    <span asp-validation-for="Game.Location" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="table-management-button" />
+                    <a class="table-management-button" asp-action="Index">Back To Games</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
