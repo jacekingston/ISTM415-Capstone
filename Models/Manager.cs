@@ -17,10 +17,18 @@ namespace ProjectPrototype.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Please enter a phone number.")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Phone Number, please ensure it is 10 digits.")]
         public long Phone { get; set; }
 
         [Required(ErrorMessage = "Please enter an email.")]
+        //[RegularExpression(@"\w + ([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)", ErrorMessage = "Not a valid email address")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Please enter a Zip code")]
+        [Range(00000, 99999, ErrorMessage = "Invalid Length for Zip Code")]
+        public int Zip { get; set; }
 
         public int TeamId { get; set; } //Foreign Key
 

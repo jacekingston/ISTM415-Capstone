@@ -10,7 +10,7 @@ using ProjectPrototype.Models;
 namespace ProjectPrototype.Migrations
 {
     [DbContext(typeof(RosterContext))]
-    [Migration("20220424220624_Initial")]
+    [Migration("20220426031920_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,6 +65,9 @@ namespace ProjectPrototype.Migrations
                     b.Property<int>("TeamId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Zip")
+                        .HasColumnType("int");
+
                     b.HasKey("ManagerId");
 
                     b.HasIndex("TeamId");
@@ -79,7 +82,8 @@ namespace ProjectPrototype.Migrations
                             FirstName = "Mike",
                             LastName = "Stevens",
                             Phone = 9723389204L,
-                            TeamId = 1
+                            TeamId = 1,
+                            Zip = 77840
                         },
                         new
                         {
@@ -88,7 +92,8 @@ namespace ProjectPrototype.Migrations
                             FirstName = "John",
                             LastName = "Freeman",
                             Phone = 9725478392L,
-                            TeamId = 2
+                            TeamId = 2,
+                            Zip = 77840
                         },
                         new
                         {
@@ -97,7 +102,8 @@ namespace ProjectPrototype.Migrations
                             FirstName = "Ryan",
                             LastName = "Walker",
                             Phone = 9725478392L,
-                            TeamId = 3
+                            TeamId = 3,
+                            Zip = 77840
                         },
                         new
                         {
@@ -106,7 +112,8 @@ namespace ProjectPrototype.Migrations
                             FirstName = "Joe",
                             LastName = "Burrow",
                             Phone = 9725478392L,
-                            TeamId = 4
+                            TeamId = 4,
+                            Zip = 77840
                         },
                         new
                         {
@@ -115,7 +122,8 @@ namespace ProjectPrototype.Migrations
                             FirstName = "Tom",
                             LastName = "Brady",
                             Phone = 9725478392L,
-                            TeamId = 5
+                            TeamId = 5,
+                            Zip = 77840
                         },
                         new
                         {
@@ -124,7 +132,8 @@ namespace ProjectPrototype.Migrations
                             FirstName = "Brett",
                             LastName = "Favre",
                             Phone = 9725478392L,
-                            TeamId = 6
+                            TeamId = 6,
+                            Zip = 77840
                         },
                         new
                         {
@@ -133,7 +142,8 @@ namespace ProjectPrototype.Migrations
                             FirstName = "Trey",
                             LastName = "Kingston",
                             Phone = 9725478392L,
-                            TeamId = 7
+                            TeamId = 7,
+                            Zip = 77840
                         },
                         new
                         {
@@ -142,7 +152,8 @@ namespace ProjectPrototype.Migrations
                             FirstName = "Kade",
                             LastName = "Kingston",
                             Phone = 9725478392L,
-                            TeamId = 8
+                            TeamId = 8,
+                            Zip = 77840
                         });
                 });
 

@@ -47,6 +47,7 @@ namespace ProjectPrototype.Migrations
                     LastName = table.Column<string>(nullable: false),
                     Phone = table.Column<long>(nullable: false),
                     Email = table.Column<string>(nullable: false),
+                    Zip = table.Column<int>(nullable: false),
                     TeamId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -143,17 +144,17 @@ namespace ProjectPrototype.Migrations
 
             migrationBuilder.InsertData(
                 table: "Manager",
-                columns: new[] { "ManagerId", "Email", "FirstName", "LastName", "Phone", "TeamId" },
+                columns: new[] { "ManagerId", "Email", "FirstName", "LastName", "Phone", "TeamId", "Zip" },
                 values: new object[,]
                 {
-                    { 1, "mstevens@verizon.net", "Mike", "Stevens", 9723389204L, 1 },
-                    { 2, "freemansports@gmail.com", "John", "Freeman", 9725478392L, 2 },
-                    { 3, "DubWalker@gmail.com", "Ryan", "Walker", 9725478392L, 3 },
-                    { 4, "goated@gmail.com", "Joe", "Burrow", 9725478392L, 4 },
-                    { 5, "Deflate@gmail.com", "Tom", "Brady", 9725478392L, 5 },
-                    { 6, "OldBrett@gmail.com", "Brett", "Favre", 9725478392L, 6 },
-                    { 7, "TreyK@gmail.com", "Trey", "Kingston", 9725478392L, 7 },
-                    { 8, "KadeK@gmail.com", "Kade", "Kingston", 9725478392L, 8 }
+                    { 1, "mstevens@verizon.net", "Mike", "Stevens", 9723389204L, 1, 77840 },
+                    { 2, "freemansports@gmail.com", "John", "Freeman", 9725478392L, 2, 77840 },
+                    { 3, "DubWalker@gmail.com", "Ryan", "Walker", 9725478392L, 3, 77840 },
+                    { 4, "goated@gmail.com", "Joe", "Burrow", 9725478392L, 4, 77840 },
+                    { 5, "Deflate@gmail.com", "Tom", "Brady", 9725478392L, 5, 77840 },
+                    { 6, "OldBrett@gmail.com", "Brett", "Favre", 9725478392L, 6, 77840 },
+                    { 7, "TreyK@gmail.com", "Trey", "Kingston", 9725478392L, 7, 77840 },
+                    { 8, "KadeK@gmail.com", "Kade", "Kingston", 9725478392L, 8, 77840 }
                 });
 
             migrationBuilder.CreateIndex(
