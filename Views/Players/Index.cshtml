@@ -1,18 +1,13 @@
 ﻿@model IEnumerable<ProjectPrototype.Models.Player>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Players";
 }
 
-<div class="container">
-    <h1>Players View</h1>
-
-    <p>
-        <div>
-            <a asp-action="Index" asp-controller="Home">Go back home</a>
-        </div>
-        <a asp-action="Create">Create New</a>
-    </p>
+<div class="jace-container">
+    <h1 class="table-title">Players</h1>
+    <a class="table-management-button" asp-action="Index" asp-controller="Home">Go Back Home</a>
+    <a class="table-management-button" asp-action="Create">Create New Player</a>
     <table class="table">
         <thead>
             <tr>
@@ -63,6 +58,9 @@
                 </th>
                 <th>
                     HR Allowed
+                </th>
+                <th>
+
                 </th>
             </tr>
         </thead>
@@ -119,9 +117,9 @@
                         @Html.DisplayFor(modelItem => item.NumHomerunsAllowed)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.PlayerId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.PlayerId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.PlayerId">Delete</a>
+                        <a class="table-management-button" asp-action="Edit" asp-route-id="@item.PlayerId">Edit</a>
+                        <a class="table-management-button" asp-action="Details" asp-route-id="@item.PlayerId">Details</a>
+                        <a class="table-management-button" asp-action="Delete" asp-route-id="@item.PlayerId">Delete</a>
                     </td>
                 </tr>
             }
@@ -133,13 +131,8 @@
     <form asp-action="PopulatePlayers">
         <div>
             Admin Populate: <input type="number" name="count" />
-            <input type="submit" value="Populate" class="btn btn-primary" />
+            <input type="submit" value="Populate" class="table-management-button" />
         </div>
     </form>
-    <!--<form asp-action="PopulatePlayerStats">
-        <div class="form-group">
-            <input type="submit" value="Populate Stats" class="btn btn-primary"/>
-        </div>
-    </form>-->
 </div>
 

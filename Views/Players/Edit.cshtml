@@ -1,126 +1,127 @@
 ﻿@model ProjectPrototype.Models.Player
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Player";
 }
 
-<h1>Edit</h1>
+<div class="container">
+    <h1 class="table-title">Edit @Model.FirstName @Model.LastName Details</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="PlayerId" />
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label">First Name</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label">Last Name</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DOB" class="control-label">Date-of-Birth</label>
+                    <input asp-for="DOB" class="form-control" />
+                    <span asp-validation-for="DOB" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Height" class="control-label">Height (in inches)</label>
+                    <input asp-for="Height" class="form-control" />
+                    <span asp-validation-for="Height" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Weight" class="control-label">Weight (in lbs)</label>
+                    <input asp-for="Weight" class="form-control" />
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TeamId" class="control-label">Team Name</label>
+                    <select asp-for="TeamId" class="form-control" asp-items="ViewBag.TeamId"></select>
+                    <span asp-validation-for="TeamId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Position" class="control-label"></label>
+                    <input asp-for="Position" class="form-control" />
+                    <span asp-validation-for="Position" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumAtBats" class="control-label">Number of At-Bats</label>
+                    <input asp-for="NumAtBats" class="form-control" />
+                    <span asp-validation-for="NumAtBats" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumHits" class="control-label">Number of Hits</label>
+                    <input asp-for="NumHits" class="form-control" />
+                    <span asp-validation-for="NumHits" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumHittingStrikeouts" class="control-label">Hitting Strikeouts</label>
+                    <input asp-for="NumHittingStrikeouts" class="form-control" />
+                    <span asp-validation-for="NumHittingStrikeouts" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumHomeruns" class="control-label">HR</label>
+                    <input asp-for="NumHomeruns" class="form-control" />
+                    <span asp-validation-for="NumHomeruns" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumRBI" class="control-label">RBIs</label>
+                    <input asp-for="NumRBI" class="form-control" />
+                    <span asp-validation-for="NumRBI" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumWalks" class="control-label">Walks</label>
+                    <input asp-for="NumWalks" class="form-control" />
+                    <span asp-validation-for="NumWalks" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumPlays" class="control-label">Number of Plays</label>
+                    <input asp-for="NumPlays" class="form-control" />
+                    <span asp-validation-for="NumPlays" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumErrors" class="control-label">Number of Errors</label>
+                    <input asp-for="NumErrors" class="form-control" />
+                    <span asp-validation-for="NumErrors" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumInningsPitched" class="control-label">Innings Pitched</label>
+                    <input asp-for="NumInningsPitched" class="form-control" />
+                    <span asp-validation-for="NumInningsPitched" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumEarnedRunsAllowed" class="control-label">Earned Runs</label>
+                    <input asp-for="NumEarnedRunsAllowed" class="form-control" />
+                    <span asp-validation-for="NumEarnedRunsAllowed" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumPitchingStrikeouts" class="control-label">Pitching Strikeouts</label>
+                    <input asp-for="NumPitchingStrikeouts" class="form-control" />
+                    <span asp-validation-for="NumPitchingStrikeouts" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumWalksAllowed" class="control-label">Walks Allowed</label>
+                    <input asp-for="NumWalksAllowed" class="form-control" />
+                    <span asp-validation-for="NumWalksAllowed" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumHomerunsAllowed" class="control-label">HR Allowed</label>
+                    <input asp-for="NumHomerunsAllowed" class="form-control" />
+                    <span asp-validation-for="NumHomerunsAllowed" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input class="table-management-button" type="submit" value="Save" />
+                </div>
+            </form>
+        </div>
+    </div>
 
-<h4>Player</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PlayerId" />
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label">First Name</label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label">Last Name</label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DOB" class="control-label">Date-of-Birth</label>
-                <input asp-for="DOB" class="form-control" />
-                <span asp-validation-for="DOB" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Height" class="control-label">Height (in inches)</label>
-                <input asp-for="Height" class="form-control" />
-                <span asp-validation-for="Height" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Weight" class="control-label">Weight (in lbs)</label>
-                <input asp-for="Weight" class="form-control" />
-                <span asp-validation-for="Weight" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TeamId" class="control-label">Team Name</label>
-                <select asp-for="TeamId" class="form-control" asp-items="ViewBag.TeamId"></select>
-                <span asp-validation-for="TeamId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Position" class="control-label"></label>
-                <input asp-for="Position" class="form-control" />
-                <span asp-validation-for="Position" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumAtBats" class="control-label">Number of At-Bats</label>
-                <input asp-for="NumAtBats" class="form-control" />
-                <span asp-validation-for="NumAtBats" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumHits" class="control-label">Number of Hits</label>
-                <input asp-for="NumHits" class="form-control" />
-                <span asp-validation-for="NumHits" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumHittingStrikeouts" class="control-label">Hitting Strikeouts</label>
-                <input asp-for="NumHittingStrikeouts" class="form-control" />
-                <span asp-validation-for="NumHittingStrikeouts" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumHomeruns" class="control-label">HR</label>
-                <input asp-for="NumHomeruns" class="form-control" />
-                <span asp-validation-for="NumHomeruns" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumRBI" class="control-label">RBIs</label>
-                <input asp-for="NumRBI" class="form-control" />
-                <span asp-validation-for="NumRBI" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumWalks" class="control-label">Walks</label>
-                <input asp-for="NumWalks" class="form-control" />
-                <span asp-validation-for="NumWalks" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumPlays" class="control-label">Number of Plays</label>
-                <input asp-for="NumPlays" class="form-control" />
-                <span asp-validation-for="NumPlays" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumErrors" class="control-label">Number of Errors</label>
-                <input asp-for="NumErrors" class="form-control" />
-                <span asp-validation-for="NumErrors" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumInningsPitched" class="control-label">Innings Pitched</label>
-                <input asp-for="NumInningsPitched" class="form-control" />
-                <span asp-validation-for="NumInningsPitched" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumEarnedRunsAllowed" class="control-label">Earned Runs</label>
-                <input asp-for="NumEarnedRunsAllowed" class="form-control" />
-                <span asp-validation-for="NumEarnedRunsAllowed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumPitchingStrikeouts" class="control-label">Pitching Strikeouts</label>
-                <input asp-for="NumPitchingStrikeouts" class="form-control" />
-                <span asp-validation-for="NumPitchingStrikeouts" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumWalksAllowed" class="control-label">Walks Allowed</label>
-                <input asp-for="NumWalksAllowed" class="form-control" />
-                <span asp-validation-for="NumWalksAllowed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumHomerunsAllowed" class="control-label">HR Allowed</label>
-                <input asp-for="NumHomerunsAllowed" class="form-control" />
-                <span asp-validation-for="NumHomerunsAllowed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <div>
+        <a class="table-management-button" asp-action="Index">Back To Players</a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 

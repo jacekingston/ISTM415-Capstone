@@ -1,120 +1,124 @@
 ﻿@model ProjectPrototype.Models.Player
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Player Details";
 }
 
-<h1>@Model.FirstName @Model.LastName Details</h1>
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            First Name
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            Last Name
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            Date-of-Birth
-        </dt>
-        <dd class="col-sm-10">
-            @Model.getDateOfBirthDate()
-        </dd>
-        <dt class="col-sm-2">
-            Height
-        </dt>
-        <dd class="col-sm-10">
-            @Model.calculateHeight()
-        </dd>
-        <dt class="col-sm-2">
-            Weight
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-        <dt class="col-sm-2">
-            Team
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Team.TeamName)
-        </dd>
-        <dt class="col-sm-2">
-            Position
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Position)
-        </dd>
-        <dt class="col-sm-2">
-            Batting Average
-        </dt>
-        <dd class="col-sm-10">
-            @Model.calculateBattingAverage()
-        </dd>
-        <dt class="col-sm-2">
-            Hitting Strikeouts
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumHittingStrikeouts)
-        </dd>
-        <dt class="col-sm-2">
-            HR
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumHomeruns)
-        </dd>
-        <dt class="col-sm-2">
-            RBIs
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumRBI)
-        </dd>
-        <dt class="col-sm-2">
-            Walks
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumWalks)
-        </dd>
-        <dt class="col-sm-2">
-            Fielding Percentage
-        </dt>
-        <dd class="col-sm-10">
-            @Model.calculateFieldingPercentage()
-        </dd>
-        <dt class="col-sm-2">
-            ERA
-        </dt>
-        <dd class="col-sm-10">
-            @Model.calculateERA()
-        </dd>
-        <dt class="col-sm-2">
-            Pitching Strikeouts
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumPitchingStrikeouts)
-        </dd>
-        <dt class="col-sm-2">
-            Walks Allowed
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumWalksAllowed)
-        </dd>
-        <dt class="col-sm-2">
-            HR Allowed
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NumHomerunsAllowed)
-        </dd>
 
-    </dl>
+<div class="container">
+    <h1 class="table-title">@Model.FirstName @Model.LastName Details</h1>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                First Name
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt class="col-sm-2">
+                Last Name
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt class="col-sm-2">
+                Date-of-Birth
+            </dt>
+            <dd class="col-sm-10">
+                @Model.getDateOfBirthDate()
+            </dd>
+            <dt class="col-sm-2">
+                Height
+            </dt>
+            <dd class="col-sm-10">
+                @Model.calculateHeight()
+            </dd>
+            <dt class="col-sm-2">
+                Weight
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Weight)
+            </dd>
+            <dt class="col-sm-2">
+                Team
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Team.TeamName)
+            </dd>
+            <dt class="col-sm-2">
+                Position
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Position)
+            </dd>
+            <dt class="col-sm-2">
+                Batting Average
+            </dt>
+            <dd class="col-sm-10">
+                @Model.calculateBattingAverage()
+            </dd>
+            <dt class="col-sm-2">
+                Hitting Strikeouts
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumHittingStrikeouts)
+            </dd>
+            <dt class="col-sm-2">
+                HR
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumHomeruns)
+            </dd>
+            <dt class="col-sm-2">
+                RBIs
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumRBI)
+            </dd>
+            <dt class="col-sm-2">
+                Walks
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumWalks)
+            </dd>
+            <dt class="col-sm-2">
+                Fielding Percentage
+            </dt>
+            <dd class="col-sm-10">
+                @Model.calculateFieldingPercentage()
+            </dd>
+            <dt class="col-sm-2">
+                ERA
+            </dt>
+            <dd class="col-sm-10">
+                @Model.calculateERA()
+            </dd>
+            <dt class="col-sm-2">
+                Pitching Strikeouts
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumPitchingStrikeouts)
+            </dd>
+            <dt class="col-sm-2">
+                Walks Allowed
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumWalksAllowed)
+            </dd>
+            <dt class="col-sm-2">
+                HR Allowed
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumHomerunsAllowed)
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        <a class="table-management-button" asp-action="Edit" asp-route-id="@Model.PlayerId">Edit</a>
+        <a class="table-management-button" asp-action="Index">Back To Players</a>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.PlayerId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
