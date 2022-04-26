@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Outcome" class="control-label"></label>
-                <select asp-for="Outcome" class="form-control"></select>
+                <select asp-for="Outcome" class="form-control" asp-items="@Html.GetEnumSelectList<Outcome>()"></select>
                 <span asp-validation-for="Outcome" class="text-danger"></span>
             </div>
             <div class="form-group">
