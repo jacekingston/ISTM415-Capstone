@@ -4,7 +4,6 @@
     ViewData["Title"] = "Managers";
 }
 
-
 <div class="jace-container">
     <h1 class="table-title">Managers</h1>
     <hr />
@@ -24,6 +23,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Zip)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Team)
@@ -50,6 +52,9 @@
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.Zip)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Team.TeamName)
                     </td>
                     <td>
@@ -62,5 +67,4 @@
             }
         </tbody>
     </table>
-
 </div>

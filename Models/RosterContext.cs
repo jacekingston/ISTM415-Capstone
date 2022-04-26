@@ -206,6 +206,7 @@ namespace ProjectPrototype.Models
                     LastName = "Stevens",
                     Phone = 9723389204,
                     Email = "mstevens@verizon.net",
+                    Zip = 77840,
                     TeamId = 1
                 },
                 new Manager
@@ -215,6 +216,7 @@ namespace ProjectPrototype.Models
                     LastName = "Freeman",
                     Phone = 9725478392,
                     Email = "freemansports@gmail.com",
+                    Zip = 77840,
                     TeamId = 2
                 },
                 new Manager
@@ -224,6 +226,7 @@ namespace ProjectPrototype.Models
                     LastName = "Walker",
                     Phone = 9725478392,
                     Email = "DubWalker@gmail.com",
+                    Zip = 77840,
                     TeamId = 3
                 },
                 new Manager
@@ -233,6 +236,7 @@ namespace ProjectPrototype.Models
                     LastName = "Burrow",
                     Phone = 9725478392,
                     Email = "goated@gmail.com",
+                    Zip = 77840,
                     TeamId = 4
                 },
                 new Manager
@@ -242,6 +246,7 @@ namespace ProjectPrototype.Models
                     LastName = "Brady",
                     Phone = 9725478392,
                     Email = "Deflate@gmail.com",
+                    Zip = 77840,
                     TeamId = 5
                 },
                 new Manager
@@ -251,6 +256,7 @@ namespace ProjectPrototype.Models
                     LastName = "Favre",
                     Phone = 9725478392,
                     Email = "OldBrett@gmail.com",
+                    Zip = 77840,
                     TeamId = 6
                 },
                 new Manager
@@ -260,6 +266,7 @@ namespace ProjectPrototype.Models
                     LastName = "Kingston",
                     Phone = 9725478392,
                     Email = "TreyK@gmail.com",
+                    Zip = 77840,
                     TeamId = 7
                 },
                 new Manager
@@ -269,6 +276,7 @@ namespace ProjectPrototype.Models
                     LastName = "Kingston",
                     Phone = 9725478392,
                     Email = "KadeK@gmail.com",
+                    Zip = 77840,
                     TeamId = 8
                 }
             );

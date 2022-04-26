@@ -156,18 +156,37 @@ namespace ProjectPrototype.Controllers
                 // Save so auto ID is generated
                 await _context.SaveChangesAsync();
 
+                Outcome outcomeA;
+                Outcome outcomeB;
+                if(fullGame.MatchW.Score > fullGame.MatchL.Score)
+                {
+                    outcomeA = Outcome.Win;
+                    outcomeB = Outcome.Loss;
+                }else if(fullGame.MatchW.Score > fullGame.MatchL.Score)
+                {
+                    outcomeA = Outcome.Loss;
+                    outcomeB = Outcome.Win;
+                }
+                else
+                {
+                    outcomeA = Outcome.Tie;
+                    outcomeB = Outcome.Tie;
+                }
+
                 // Add Matches
                 _context.Add(new Match
                 {
                     GameId = trackGame.Entity.GameId,
                     TeamId = fullGame.TeamW.TeamId,
-                    Score = fullGame.MatchW.Score
+                    Score = fullGame.MatchW.Score,
+                    Outcome = outcomeA
                 });
                 _context.Add(new Match
                 {
                     GameId = trackGame.Entity.GameId,
                     TeamId = fullGame.TeamL.TeamId,
-                    Score = fullGame.MatchL.Score
+                    Score = fullGame.MatchL.Score,
+                    Outcome = outcomeB
                 });
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -341,7 +360,8 @@ namespace ProjectPrototype.Controllers
 
                 //ModelState.Remove("GameMatch.DummyPlayer");
                 ModelState.Clear();
-                fullGame.DummyPlayer.SetAsDummy(fullGame.SelectedPlayer);
+                if(fullGame.SelectedPlayer != null)
+                    fullGame.DummyPlayer.SetAsDummy(fullGame.SelectedPlayer);
 
                 // Filled Selected List based on team and player pick
                 var players = _context.Players.Where(p => p.TeamId == fullGame.SelectedTeamId).OrderBy(p => p.LastName);
