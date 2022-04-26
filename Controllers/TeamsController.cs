@@ -21,6 +21,13 @@ namespace ProjectPrototype.Controllers
         // GET: Teams
         public async Task<IActionResult> Index()
         {
+            foreach (var team in _context.Teams)
+            {
+                team.Wins = await _context.Matches.CountAsync(m => m.TeamId == team.TeamId && (m.Outcome == Outcome.Win || m.Outcome == Outcome.Tie));
+                team.Losses = await _context.Matches.CountAsync(m => m.TeamId == team.TeamId && (m.Outcome == Outcome.Loss));
+                _context.Teams.Update(team);
+            }
+            await _context.SaveChangesAsync();
             return View(await _context.Teams.ToListAsync());
         }
 
