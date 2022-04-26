@@ -1,54 +1,55 @@
 ﻿@model ProjectPrototype.Models.Manager
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Manager Details";
 }
 
-<h1>Details</h1>
+<div class="container">
+    <h1 class="table-title">@Model.FirstName @Model.LastName Details</h1>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                First Name
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt class="col-sm-2">
+                Last Name
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Zip)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Zip)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Team)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Team.TeamName)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="table-management-button" asp-action="Edit" asp-route-id="@Model.ManagerId">Edit</a>
+        <a class="table-management-button" asp-action="Index">Back To Managers</a>
+    </div>
+</div>
 
-<div>
-    <h4>Manager</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Zip)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Zip)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Team)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Team.TeamName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ManagerId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>

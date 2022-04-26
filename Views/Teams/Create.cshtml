@@ -1,45 +1,34 @@
 ﻿@model ProjectPrototype.Models.Team
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Team";
 }
 
-<h1>Create</h1>
 
-<h4>Team</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TeamName" class="control-label"></label>
-                <input asp-for="TeamName" class="form-control" />
-                <span asp-validation-for="TeamName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mascot" class="control-label"></label>
-                <input asp-for="Mascot" class="form-control" />
-                <span asp-validation-for="Mascot" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Wins" class="control-label"></label>
-                <input asp-for="Wins" class="form-control" />
-                <span asp-validation-for="Wins" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Losses" class="control-label"></label>
-                <input asp-for="Losses" class="form-control" />
-                <span asp-validation-for="Losses" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container">
+    <h1 class="table-title">Create Team</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="TeamName" class="control-label">Team Name</label>
+                    <input asp-for="TeamName" class="form-control" />
+                    <span asp-validation-for="TeamName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Mascot" class="control-label"></label>
+                    <input asp-for="Mascot" class="form-control" />
+                    <span asp-validation-for="Mascot" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="table-management-button" />
+                    <a class="table-management-button" asp-action="Index">Back to Teams</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 

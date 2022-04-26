@@ -1,43 +1,41 @@
 ﻿@model ProjectPrototype.Models.Match
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Match";
 }
 
-<h1>Create</h1>
-
-<h4>Match</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="GameId" class="control-label"></label>
-                <select asp-for="GameId" class ="form-control" asp-items="ViewBag.GameId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="TeamId" class="control-label"></label>
-                <select asp-for="TeamId" class ="form-control" asp-items="ViewBag.TeamId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Score" class="control-label"></label>
-                <input asp-for="Score" class="form-control" />
-                <span asp-validation-for="Score" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Outcome" class="control-label"></label>
-                <select asp-for="Outcome" class="form-control" asp-items="@Html.GetEnumSelectList<Outcome>()"></select>
-                <span asp-validation-for="Outcome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container">
+    <h1 class="table-title">Create Match</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="TeamId" class="control-label">Team</label>
+                    <select asp-for="TeamId" class="form-control" asp-items="ViewBag.TeamId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GameId" class="control-label">Date/Time</label>
+                    <select asp-for="GameId" class="form-control" asp-items="ViewBag.GameId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Outcome" class="control-label">Outcome</label>
+                    <select asp-for="Outcome" class="form-control" asp-items="@Html.GetEnumSelectList<Outcome>()"></select>
+                    <span asp-validation-for="Outcome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Score" class="control-label">Score</label>
+                    <input asp-for="Score" class="form-control" />
+                    <span asp-validation-for="Score" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="table-management-button" />
+                    <a class="table-management-button" asp-action="Index">Back To Matches</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 

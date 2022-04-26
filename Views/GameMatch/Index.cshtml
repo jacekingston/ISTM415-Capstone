@@ -66,8 +66,8 @@
                             @Html.DisplayFor(modelItem => item.Game.Location)
                         </td>
                         <td>
-                            <a asp-action="Stats" asp-route-Id="@item.Game.GameId">Game Stats</a> |
-                            <a asp-action="Edit" asp-route-Id="@item.Game.GameId">Edit</a> |
+                            <a asp-action="Edit" asp-route-Id="@item.Game.GameId">Edit</a>
+                            <a asp-action="Stats" asp-route-Id="@item.Game.GameId">Game Stats</a>
                             <a asp-action="Delete" asp-route-Id="@item.Game.GameId">Delete</a>
                         </td>
                     </tr>

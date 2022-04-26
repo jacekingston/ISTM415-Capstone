@@ -1,41 +1,44 @@
 ﻿@model IEnumerable<ProjectPrototype.Models.Game>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Games";
 }
 
-<h1>Games View</h1>
+<div class="jace-container">
+    <h1 class="table-title">Games</h1>
+    <hr />
+    <a class="table-management-button" asp-action="Index" asp-controller="Home">Go Back Home</a>
+    <a class="table-management-button" asp-action="Create">Create New Game</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                <th>
+                    Match
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime)
+                    </td>
+                    <td>
+                        <a class="table-management-button" asp-action="Edit" asp-route-id="@item.GameId">Edit</a>
+                        <a class="table-management-button" asp-action="Details" asp-route-id="@item.GameId">Details</a>
+                        <a class="table-management-button" asp-action="Delete" asp-route-id="@item.GameId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.GameId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.GameId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.GameId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+</div>

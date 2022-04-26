@@ -150,10 +150,16 @@ footer {
     box-shadow: 0 0 0 1px #ededed;
     font-weight: 400;
     display: block;
-    max-height: 500px;
+    max-height: 520px;
     overflow-y: scroll;
     margin-top: 30px;
-    width: 100%;
+    max-width: fit-content;
+    white-space: nowrap;
+}
+
+.table thead, .table th {
+    position: sticky;
+    top: 0;
 }
 
 .table tr:nth-child(even) {
@@ -164,6 +170,7 @@ footer {
     background-color: #500000;
     color: white;
     font-weight: 400;
+    position: sticky;
 }
 
 .table th, .table td {
@@ -198,7 +205,7 @@ footer {
 }
 
 .jace-container {
-    width: 96%;
+    max-width: fit-content;
     margin-right: auto;
     margin-left: auto;
 }
