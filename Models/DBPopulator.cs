@@ -209,7 +209,7 @@ namespace ProjectPrototype.Models
 
         string[] positions = new string[]
         {
-            "Pitcher","Catcher","First Baseman","Second Baseman","Third Baseman","Shortstop","Left Field","Center Field","Right Field"
+            "P","C","1B","2B","3B","SS","LF","CF","RF"
         };
 
         string[] names = new string[]
