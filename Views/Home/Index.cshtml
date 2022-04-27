@@ -3,23 +3,29 @@
 }
 
 <div class="home">
-    <div class="home-title">
+    <nav class="home-nav">
+        <a href="#welcome-screen">Home</a>
+        <a href="#about-screen">About</a>
+        <a href="#stats-screen">League Stats</a>
+        <a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+    </nav>
+    <div class="home-title" id="welcome-screen">
         <h1>Welcome to the College Station Youth Baseball League</h1>
     </div>
-    <div class="about">
+    <div class="about" id="about-screen">
         <div class="about-text">
             <h1>About Our League</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Founded in 1991, the College Station Youth Baseball League has been providing outstanding recreational sport services to kids and families across the Brazos County. We strive to make sure every player, manager, and parent is known. With this mission, families can enjoy a full day at the ballpark, watching their kids play America's pasttime. Contact our offices, and your kids will be having a blast on the field in less than a week.</p>
         </div>
         <img src="~/images/bb-players-jumping.jpg" />
     </div>
-    <div class="databases-home">
+    <div class="databases-home" id="stats-screen">
         <h1>League Stats and Data</h1>
         <div class="table-buttons">
-            <a href="https://localhost:7200/Players/Index" class="view-table-link">Players</a>
-            <a href="https://localhost:7200/Teams/Index" class="view-table-link">Teams</a>
-            <a href="https://localhost:7200/Managers/Index" class="view-table-link">Managers</a>
-            <a href="https://localhost:7200/GameMatch/Index" class="view-table-link">Games</a>
+            <a asp-area="Default" asp-controller="Players" asp-action="Index" class="view-table-link">Players</a>
+            <a asp-area="Default" asp-controller="Teams" asp-action="Index" class="view-table-link">Teams</a>
+            <a asp-area="Default" asp-controller="Managers" asp-action="Index" class="view-table-link">Managers</a>
+            <a asp-area="Default" asp-controller="GameMatch" asp-action="Index" class="view-table-link">Games</a>
         </div>
     </div>
 </div>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ProjectPrototype.Models.Team>
+
+@{
+    ViewData["Title"] = "Teams";
+}
+
+<div class="jace-container">
+    <h1 class="table-title">Teams</h1>
+    <hr />
+    <a class="table-management-button" asp-action="Index" asp-controller="Home">Go Back Home</a>
+    <a class="table-management-button" asp-action="Create">Create New Team</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Team Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mascot)
+                </th>
+                <th>
+                    Record
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TeamName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mascot)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Wins)-@Html.DisplayFor(modelItem => item.Losses)
+                    </td>
+                    <td>
+                        <a class="table-management-button" asp-action="Edit" asp-route-id="@item.TeamId">Edit</a>
+                        <a class="table-management-button" asp-action="Details" asp-route-id="@item.TeamId">Details</a>
+                        <a class="table-management-button" asp-action="Delete" asp-route-id="@item.TeamId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

@@ -5,10 +5,7 @@
 }
 
 
-<nav class="home-nav">
-    <a asp-area="Default" asp-controller="Home" asp-action="Index">Home</a>
-    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
-</nav>
+
 <div class="container">
     <h1 class="table-title">@Model.FirstName @Model.LastName Details</h1>
     <div>
@@ -42,7 +39,7 @@
                 Weight
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Weight) lbs
+                @Html.DisplayFor(model => model.Weight)
             </dd>
             <dt class="col-sm-2">
                 Team
@@ -120,9 +117,8 @@
         </dl>
     </div>
     <div>
-        <a class="table-management-button" asp-area="Default" asp-controller="Players" asp-action="Index">Back To Players</a>
+        <a class="table-management-button" asp-action="Edit" asp-route-id="@Model.PlayerId">Edit</a>
+        <a class="table-management-button" asp-action="Index">Back To Players</a>
     </div>
 </div>
-<footer>
-    <p>Phone Number: (816)233-0879 | Email: bcslittleague@sportslife.com | Address: 2231 Texas Ave, Bryan, TX 77801</p>
-</footer>
+

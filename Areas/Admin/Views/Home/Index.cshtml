@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Admin Home Page";
+}
+
+<a class="table-management-button" id="sign-out" asp-area="Default" asp-controller="Home" asp-action="Index">Sign-Out</a>
+<div class="databases-home" id="admin-home">
+    <h1 class="table-title" id="admin-home-title"><i>Welcome,</i> Admin</h1>
+    <div class="table-buttons">
+        <a asp-area="Admin" asp-controller="Players" asp-action="Index" class="view-table-link">Edit Players</a>
+        <a asp-area="Admin" asp-controller="Teams" asp-action="Index" class="view-table-link">Edit Teams</a>
+        <a asp-area="Admin" asp-controller="Managers" asp-action="Index" class="view-table-link">Edit Managers</a>
+        <a asp-area="Admin" asp-controller="GameMatch" asp-action="Index" class="view-table-link">Edit Games</a>
+    </div>
+</div>

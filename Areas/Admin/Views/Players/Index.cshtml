@@ -1,0 +1,138 @@
+﻿@model IEnumerable<ProjectPrototype.Models.Player>
+
+@{
+    ViewData["Title"] = "Players";
+}
+
+<div class="jace-container">
+    <h1 class="table-title">Players</h1>
+    <hr />
+    <a class="table-management-button" asp-action="Index" asp-controller="Home">Go Back Home</a>
+    <a class="table-management-button" asp-action="Create">Create New Player</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Date-of-Birth
+                </th>
+                <th>
+                    Height
+                </th>
+                <th>
+                    Weight
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Team)
+                </th>
+                <th>
+                    Position
+                </th>
+                <th>
+                    Batting Average
+                </th>
+                <th>
+                    Hitting Strikeouts
+                </th>
+                <th>
+                    HR
+                </th>
+                <th>
+                    RBIs
+                </th>
+                <th>
+                    Walks
+                </th>
+                <th>
+                    Fielding Percentage
+                </th>
+                <th>
+                    ERA
+                </th>
+                <th>
+                    Pitching Strikeouts
+                </th>
+                <th>
+                    Walks Allowed
+                </th>
+                <th>
+                    HR Allowed
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)  @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @item.getDateOfBirthDate()
+                    </td>
+                    <td>
+                        @item.calculateHeight()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Weight) lbs
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Team.TeamName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        @item.calculateBattingAverage()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumHittingStrikeouts)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumHomeruns)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumRBI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumWalks)
+                    </td>
+                    <td>
+                        @item.calculateFieldingPercentage()
+                    </td>
+                    <td>
+                        @item.calculateERA()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumPitchingStrikeouts)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumWalksAllowed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumHomerunsAllowed)
+                    </td>
+                    <td>
+                        <a class="table-management-button" asp-action="Edit" asp-route-id="@item.PlayerId">Edit</a>
+                        <a class="table-management-button" asp-action="Details" asp-route-id="@item.PlayerId">Details</a>
+                        <a class="table-management-button" asp-action="Delete" asp-route-id="@item.PlayerId">Delete</a>
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form asp-action="PopulatePlayers">
+        <div>
+            Populate <input class="text-input" type="number" name="count" />
+            <input type="submit" value="Populate" class="table-management-button" />
+        </div>
+    </form>
+</div>
+

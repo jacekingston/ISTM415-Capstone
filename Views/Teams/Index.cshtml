@@ -4,49 +4,60 @@
     ViewData["Title"] = "Teams";
 }
 
-<div class="jace-container">
-    <h1 class="table-title">Teams</h1>
-    <hr />
-    <a class="table-management-button" asp-action="Index" asp-controller="Home">Go Back Home</a>
-    <a class="table-management-button" asp-action="Create">Create New Team</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Team Name
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Mascot)
-                </th>
-                <th>
-                    Record
-                </th>
-                <th>
-
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+<nav class="home-nav">
+    <a asp-area="Default" asp-controller="Home" asp-action="Index">Home</a>
+    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+</nav>
+<div class="small-table">
+    <div id="team-table">
+        <h1 class="table-title">Teams</h1>
+        <hr />
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TeamName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Mascot)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Wins)-@Html.DisplayFor(modelItem => item.Losses)
-                    </td>
-                    <td>
-                        <a class="table-management-button" asp-action="Edit" asp-route-id="@item.TeamId">Edit</a>
-                        <a class="table-management-button" asp-action="Details" asp-route-id="@item.TeamId">Details</a>
-                        <a class="table-management-button" asp-action="Delete" asp-route-id="@item.TeamId">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                    <th>
+                        Team Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mascot)
+                    </th>
+                    <th>
+                        Record
+                    </th>
+                    <th>
 
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeamName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mascot)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wins)-@Html.DisplayFor(modelItem => item.Losses)
+                        </td>
+                        <td>
+                            <a class="table-management-button" asp-area="Default" asp-action="Details" asp-route-id="@item.TeamId">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="weekly-team">
+        <div class="weekly-team-container">
+            <h1>Team Of The Week</h1>
+            <h2>Indians</h2>
+            <img src="~/images/team-photo.jpg" />
+        </div>
+    </div>
 </div>
+<footer>
+    <p>Phone Number: (816)233-0879 | Email: bcslittleague@sportslife.com | Address: 2231 Texas Ave, Bryan, TX 77801</p>
+</footer>

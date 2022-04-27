@@ -4,14 +4,12 @@
     ViewData["Title"] = "Games";
 }
 
-<nav class="home-nav">
-    <a asp-area="Default" asp-controller="Home" asp-action="Index">Home</a>
-    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
-</nav>
 <div class="jace-container">
     <h1 class="table-title">Games</h1>
     <hr />
-    <form asp-area="Default" asp-controller="GameMatch" asp-action="Index">
+    <a class="table-management-button" asp-action="Index" asp-controller="Home">Go Back Home</a>
+    <a class="table-management-button" asp-controller="GameMatch" asp-action="Create">Create New</a>
+    <form asp-controller="GameMatch" asp-action="Index">
         <input class="filter text-input" type="text" name="SearchString" />
         <input class="filter table-management-button" type="submit" value="Filter" />
     </form>
@@ -66,7 +64,9 @@
                                 @Html.DisplayFor(modelItem => item.Game.Location)
                             </td>
                             <td>
-                                <a class="table-management-button" asp-area="Default" asp-controller="GameMatch" asp-action="Stats" asp-route-Id="@item.Game.GameId">Details</a>
+                                <a class="table-management-button" asp-controller="GameMatch" asp-action="Edit" asp-route-Id="@item.Game.GameId">Edit</a>
+                                <a class="table-management-button" asp-controller="GameMatch" asp-action="Stats" asp-route-Id="@item.Game.GameId">Details</a>
+                                <a class="table-management-button" asp-controller="GameMatch" asp-action="Delete" asp-route-Id="@item.Game.GameId">Delete</a>
                             </td>
                         </tr>
                     }
@@ -74,8 +74,11 @@
             </table>
         </div>
     </form>
+    <form asp-action="SimulateSeason">
+        <div>
+            Simulate Season <input class="text-input" type="number" name="year" />
+            <input type="submit" value="Simulate" class="table-management-button" />
+        </div>
+    </form>
 </div>
-<footer>
-    <p>Phone Number: (816)233-0879 | Email: bcslittleague@sportslife.com | Address: 2231 Texas Ave, Bryan, TX 77801</p>
-</footer>
 

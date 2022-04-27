@@ -4,10 +4,6 @@
     ViewData["Title"] = "Manager Details";
 }
 
-<nav class="home-nav">
-    <a asp-area="Default" asp-controller="Home" asp-action="Index">Home</a>
-    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
-</nav>
 <div class="container">
     <h1 class="table-title">@Model.FirstName @Model.LastName Details</h1>
     <div>
@@ -52,9 +48,8 @@
         </dl>
     </div>
     <div>
-        <a class="table-management-button" asp-area="Default" asp-controller="Managers" asp-action="Index">Back To Managers</a>
+        <a class="table-management-button" asp-action="Edit" asp-route-id="@Model.ManagerId">Edit</a>
+        <a class="table-management-button" asp-action="Index">Back To Managers</a>
     </div>
 </div>
-<footer>
-    <p>Phone Number: (816)233-0879 | Email: bcslittleague@sportslife.com | Address: 2231 Texas Ave, Bryan, TX 77801</p>
-</footer>
+

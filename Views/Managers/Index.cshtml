@@ -4,67 +4,78 @@
     ViewData["Title"] = "Managers";
 }
 
-<div class="jace-container">
-    <h1 class="table-title">Managers</h1>
-    <hr />
-    <a class="table-management-button" asp-action="Index" asp-controller="Home">Go Back Home</a>
-    <a class="table-management-button" asp-action="Create">Create New</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    First Name
-                </th>
-                <th>
-                    Last Name
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Team)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Phone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Zip)
-                </th>
-                <th>
-
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+<nav class="home-nav">
+    <a asp-area="Default" asp-controller="Home" asp-action="Index">Home</a>
+    <a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+</nav>
+<div class="small-table">
+    <div id="manager-table">
+        <h1 class="table-title">Managers</h1>
+        <hr />
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Team.TeamName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Phone)
-                    </td>
-                    <td>
-                        @item.Email.ToString()
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Zip)
-                    </td>
-                    <td>
-                        <a class="table-management-button" asp-action="Edit" asp-route-id="@item.ManagerId">Edit</a>
-                        <a class="table-management-button" asp-action="Details" asp-route-id="@item.ManagerId">Details</a>
-                        <a class="table-management-button" asp-action="Delete" asp-route-id="@item.ManagerId">Delete</a>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Team)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Zip)
+                    </th>
+                    <th>
 
-                    </td>
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Team.TeamName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            @item.Email.ToString()
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Zip)
+                        </td>
+                        <td>
+                            <a class="table-management-button" asp-area="Default" asp-action="Details" asp-route-id="@item.ManagerId">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="weekly-manager">
+        <div class="weekly-manager-container">
+            <h1>Manager Of The Week</h1>
+            <h2>Steven Jones</h2>
+            <img src="~/images/coach.jpg" />
+        </div>
+    </div>
 </div>
+<footer>
+    <p>Phone Number: (816)233-0879 | Email: bcslittleague@sportslife.com | Address: 2231 Texas Ave, Bryan, TX 77801</p>
+</footer>
