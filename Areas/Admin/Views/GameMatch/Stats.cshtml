@@ -47,7 +47,7 @@
             </dd>
         </dl>
     </div>
-    @*<div class="form-group">
+    <div class="form-group">
         @using (Html.BeginForm("Stats", "GameMatch", FormMethod.Post, new { id = "GameStats", name = "GameStats" }))
         {
             @Html.HiddenFor(model => model.Game.GameId)
@@ -69,7 +69,7 @@
             @if (Model.SelectedPlayer != null)
             {
                 <div class="form-group">
-                    <input type="submit" name="saveDummy" value="Save" class="btn btn-primary" />
+                    <input type="submit" name="saveDummy" value="Save" class="table-management-button" />
                 </div>
                 @Html.HiddenFor(model => model.SelectedPlayer.PlayerId)
                 @Html.HiddenFor(model => model.SelectedPlayer.FirstName)
@@ -290,20 +290,20 @@
                     <span asp-validation-for="DummyPlayer.NumHomerunsAllowed" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" name="saveDummy" value="Save" class="btn btn-primary" />
+                    <input type="submit" name="saveDummy" value="Save" class="table-management-button" />
                 </div>
             }
         }
-    </div>*@
+    </div>
     <div>
         <a class="table-management-button" asp-action="Edit" asp-route-id="@Model.Game.GameId">Edit</a>
         <a class="table-management-button" asp-action="Index">Back to List</a>
     </div>
 
-    @*<script>
+    <script>
         function StatsSelectChange() {
             document.GameStats.submit();
         }
-    </script>*@
+    </script>
 </div>
 
